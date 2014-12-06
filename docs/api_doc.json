@@ -1,0 +1,511 @@
+{
+    "Controller Data API":[
+        {
+            "name": "GET all controllers",
+            "desc": "Returns list of all controllers data",
+            "usage": {
+                "method": "GET",
+                "URL": "/controllers"
+            },
+            "req":null,
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "Controller id",
+                    "ex": "1"
+                },
+                {
+                    "attr": "desc",
+                    "desc": "Description of controller",
+                    "ex": "Controller A"
+                },
+                {
+                    "attr": "ip_addr",
+                    "desc": "IP address of controller",
+                    "ex": "192.168.0.101"
+                },
+                {
+                    "attr": "type",
+                    "desc": "Controller type",
+                    "ex": "Ryu 1.3"
+                }
+            ],
+            "exp_u": "$ curl -X  http://example.com/controllers",
+            "exp_res": "[<br>  {<br>    'id': 1, <br>    'desc': 'Controller In Room 234',<br>    'ip_addr': '192.168.0.101',<br>    'type': 'ryu 1.3'<br>  },<br>  {<br><br>    'id': 2, <br>    'desc': 'Controller In Room 235',<br>    'ip_addr': '192.168.0.102',<br>    'type': 'Open Daylight 1.0'<br>  }<br>]"
+        },
+        {
+            "name": "Get single Controller data",
+            "desc": "Returns a controller data",
+            "usage": {
+                "method": "GET",
+                "URL": "/controller/&lt;id&gt;"
+            },
+            "req":null,
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "Controller id",
+                    "ex": "1"
+                },
+                {
+                    "attr": "desc",
+                    "desc": "Description of controller",
+                    "ex": "Controller A"
+                },
+                {
+                    "attr": "ip_addr",
+                    "desc": "IP address of controller",
+                    "ex": "192.168.0.101"
+                },
+                {
+                    "attr": "type",
+                    "desc": "Controller type",
+                    "ex": "Ryu 1.3"
+                }
+            ],
+            "exp_u": "$ curl –X GET http://example.com/controller/1",
+            "exp_res": "{<br>  'id': 1, <br>  'desc': 'Controller In Room 234',<br>  'ip_addr': '192.168.0.101',<br>  'type': 'ryu 1.3'<br>}"
+        },
+        {
+            "name": "Insert controller data",
+            "desc": "Add a controller data into database ",
+            "usage": {
+                "method": "POST",
+                "URL": "/controller"
+            },
+            "req": [
+                {
+                    "attr": "desc",
+                    "desc": "Description of controller",
+                    "ex": "Controller A"
+                },
+                {
+                    "attr": "ip_addr",
+                    "desc": "IP address of controller",
+                    "ex": "192.168.0.101"
+                },
+                {
+                    "attr": "type",
+                    "desc": "Controller type",
+                    "ex": "Ryu 1.3"
+                }
+            ],
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "Controller id",
+                    "ex": "1"
+                },
+                {
+                    "attr": "desc",
+                    "desc": "Description of controller",
+                    "ex": "Controller A"
+                },
+                {
+                    "attr": "ip_addr",
+                    "desc": "IP address of controller",
+                    "ex": "192.168.0.101"
+                },
+                {
+                    "attr": "type",
+                    "desc": "Controller type",
+                    "ex": "Ryu 1.3"
+                }
+            ],
+            "exp_u": "$ curl –X POST -d ’{ \\<br>    “desc”: “Controller A”, \\<br>    “ip_addr”: “192.168.0.101” \\<br>    “rype”: “ryu 1.3” \\<br>}’ \\<br>http://example.com/controller ",
+            "exp_res": "{<br>  'id': 1, <br>  'desc': 'Controller In Room 234',<br>  'ip_addr': '192.168.0.101',<br>  'type': 'ryu 1.3'<br>}"
+        },
+        {
+            "name": "Update controller",
+            "desc": "Update controller data ",
+            "usage": {
+                "method": "POST",
+                "URL": "/controller/&lt;id&gt;"
+            },
+            "req": [
+                {
+                    "attr": "desc (optional)",
+                    "desc": "New escription of controller",
+                    "ex": "Controller B"
+                },
+                {
+                    "attr": "ip_addr (optional)",
+                    "desc": "New IP address of controller",
+                    "ex": "192.168.0.102"
+                },
+                {
+                    "attr": "type (optional)",
+                    "desc": "New Controller type",
+                    "ex": "Ryu 1.4"
+                }
+            ],
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "Controller id",
+                    "ex": "1"
+                },
+                {
+                    "attr": "desc",
+                    "desc": "New escription of controller",
+                    "ex": "Controller B"
+                },
+                {
+                    "attr": "ip_addr",
+                    "desc": "New IP address of controller",
+                    "ex": "192.168.0.102"
+                },
+                {
+                    "attr": "type",
+                    "desc": "New Controller type",
+                    "ex": "Ryu 1.4"
+                }
+            ],
+            "exp_u": "$ curl –X POST -d ’{ \\<br>    “desc”: “Controller B”, \\<br>    “ip_addr”: “192.168.0.102” \\<br>    “rype”: “ryu 1.4” \\<br>}’ \\<br>http://example.com/controller/1 ",
+            "exp_res": "{<br>  'id': 1, <br>  'desc': 'Controller B',<br>  'ip_addr': '192.168.0.102',<br>  'type': 'ryu 1.4'<br>}"
+        },
+        {
+            "name": "Delete Controller Data",
+            "desc": "Remove Controller data from database ",
+            "usage": {
+                "method": "GET",
+                "URL": "/controller/&lt;id&gt;"
+            },
+            "req":null,
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "Controller id",
+                    "ex": "1"
+                },
+                {
+                    "attr": "desc",
+                    "desc": "New escription of controller",
+                    "ex": "Controller B"
+                },
+                {
+                    "attr": "ip_addr",
+                    "desc": "New IP address of controller",
+                    "ex": "192.168.0.102"
+                },
+                {
+                    "attr": "type",
+                    "desc": "New Controller type",
+                    "ex": "Ryu 1.4"
+                }
+            ],
+            "exp_u": "$ curl -X DELETE http://example.com/controller/1",
+            "exp_res": "{<br>  'id': 1, <br>  'desc': 'Controller B',<br>  'ip_addr': '192.168.0.102',<br>  'type': 'ryu 1.4'<br>}"
+        }
+    ],
+    "Switch Data API":[
+        {
+            "name": "Get all switch data from a local controller",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        },
+        {
+            "name": "Get single switch data",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        },
+        {
+            "name": "Add a switch data to database",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        },
+        {
+            "name": "Update switch data",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        },
+        {
+            "name": "Delete a switch data from database",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        }
+    ],
+    "Link Data API":[
+        {
+            "name": "Get all links data from local controller",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        },
+        {
+            "name": "Get link data",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        },
+        {
+            "name": "Add a link",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        },
+        {
+            "name": "Update link data",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        },
+        {
+            "name": "Delete link data",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        }
+    ],
+    "Port Data API":[
+        {
+            "name": "Get all port",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        },
+        {
+            "name": "Get port data",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        },
+        {
+            "name": "Add port data",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        },
+        {
+            "name": "Update port data",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        },
+        {
+            "name": "Delete port data",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        }
+    ],
+    "Host Data API":[
+        {
+            "name": "Get all host data from controller",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        },
+        {
+            "name": "Get host data",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        },
+        {
+            "name": "Add host data",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        },
+        {
+            "name": "Update host data",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        },
+        {
+            "name": "Remove host data",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        }
+    ],
+    "Flow entry Data API":[
+        {
+            "name": "Get all flow entry data",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        },
+        {
+            "name": "Get single flow entry data",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        },
+        {
+            "name": "Add flow entry data",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        },
+        {
+            "name": "Update flow entry data",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        },
+        {
+            "name": "Delete flow entry data",
+            "desc": "",
+            "usage": {
+                "method": "GET",
+                "URL": "/"
+            },
+            "req":null,
+            "resp": null,
+            "exp_u": "$ curl -X  http://example.com/",
+            "exp_res": ""
+        }
+    ]
+}
