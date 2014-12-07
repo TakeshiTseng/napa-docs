@@ -201,311 +201,1941 @@
     "Switch Data API":[
         {
             "name": "Get all switch data from a local controller",
-            "desc": "",
+            "desc": "Return all switch data from specific controller ",
             "usage": {
                 "method": "GET",
-                "URL": "/"
+                "URL": "/controller/&lt;controller id&gt;/switches "
             },
             "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "Switch id in database",
+                    "ex": "123"
+                },
+                {
+                    "attr": "lc_id",
+                    "desc": "Local controller id of switch",
+                    "ex": "234"
+                },
+                {
+                    "attr": "dpid",
+                    "desc": "Datapath id of switch",
+                    "ex": "00000001"
+                },
+                {
+                    "attr": "ip",
+                    "desc": "IP address of switch",
+                    "ex": "10.0.4.10"
+                },
+                {
+                    "attr": "desc",
+                    "desc": "Description of switch",
+                    "ex": "Switch in room 234"
+                },
+                {
+                    "attr": "getway",
+                    "desc": "Is switch getway(Boolean)",
+                    "ex": "True"
+                }
+            ],
+            "exp_u": "$ curl –X GET http://example.com/controller/123/switches",
+            "exp_res": "[<br>  {<br>    ‘id’: 234,<br>    ‘lc_id’: 123,<br>    ‘dpid’: ‘00000001’,<br>    ‘ip’: “10.0.4.10”,<br>    ‘desc’: “Switch in room 234”,<br>    ‘getway’: True<br>  },<br>  {<br>    ‘id’: 235,<br>    ‘lc_id’: 123,<br>    ‘dpid’: ‘00000002’,<br>    ‘ip’: “10.0.4.11”,<br>    ‘desc’: “Switch in room 235”,<br>    ‘getway’: False<br>  }<br>]"
         },
         {
             "name": "Get single switch data",
-            "desc": "",
+            "desc": "Using switch id and local controller id to get a switch data.",
             "usage": {
                 "method": "GET",
-                "URL": "/"
+                "URL": "/switch/&lt;switch id&gt;"
             },
             "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "Switch id in database",
+                    "ex": "123"
+                },
+                {
+                    "attr": "lc_id",
+                    "desc": "Local controller id of switch",
+                    "ex": "234"
+                },
+                {
+                    "attr": "dpid",
+                    "desc": "Datapath id of switch",
+                    "ex": "00000001"
+                },
+                {
+                    "attr": "ip",
+                    "desc": "IP address of switch",
+                    "ex": "10.0.4.10"
+                },
+                {
+                    "attr": "desc",
+                    "desc": "Description of switch",
+                    "ex": "Switch in room 234"
+                },
+                {
+                    "attr": "getway",
+                    "desc": "Is switch getway(Boolean)",
+                    "ex": "True"
+                }
+            ],
+            "exp_u": "$ curl -X GET http://example.com/switch/234",
+            "exp_res": "{<br>  ‘id’: 234,<br>  ‘lc_id’: 123,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘getway’: true<br>}"
         },
         {
             "name": "Add a switch data to database",
-            "desc": "",
+            "desc": "Insert Switch data into database",
             "usage": {
-                "method": "GET",
-                "URL": "/"
+                "method": "POST",
+                "URL": "/switch"
             },
-            "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "req":[
+                {
+                    "attr": "lc_id",
+                    "desc": "Local controller id of switch",
+                    "ex": "234"
+                },
+                {
+                    "attr": "dpid",
+                    "desc": "Datapath id of switch",
+                    "ex": "00000001"
+                },
+                {
+                    "attr": "ip",
+                    "desc": "IP address of switch",
+                    "ex": "10.0.4.10"
+                },
+                {
+                    "attr": "desc",
+                    "desc": "Description of switch",
+                    "ex": "Switch in room 234"
+                },
+                {
+                    "attr": "getway",
+                    "desc": "Is switch getway(Boolean)",
+                    "ex": "True"
+                }
+            ],
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "Switch id in database",
+                    "ex": "123"
+                },
+                {
+                    "attr": "lc_id",
+                    "desc": "Local controller id of switch",
+                    "ex": "234"
+                },
+                {
+                    "attr": "dpid",
+                    "desc": "Datapath id of switch",
+                    "ex": "00000001"
+                },
+                {
+                    "attr": "ip",
+                    "desc": "IP address of switch",
+                    "ex": "10.0.4.10"
+                },
+                {
+                    "attr": "desc",
+                    "desc": "Description of switch",
+                    "ex": "Switch in room 234"
+                },
+                {
+                    "attr": "getway",
+                    "desc": "Is switch getway(Boolean)",
+                    "ex": "True"
+                }
+            ],
+            "exp_u": "$ curl -X POST -d ‘{ \\<br>    “lc_id”: 234, \\<br>    “dpid”: “00000001”, \\<br>    “ip”: “10.0.4.10”, \\<br>    “desc”: “Switch in room 234”, \\<br>    “getway”: true \\<br>}’ \\<br>http://example.com/switch ",
+            "exp_res": "{<br>  ‘id’: 234,<br>  ‘lc_id’: 123,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘getway’: true<br>}"
         },
         {
             "name": "Update switch data",
-            "desc": "",
+            "desc": "Update switch data from database",
             "usage": {
-                "method": "GET",
-                "URL": "/"
+                "method": "POST",
+                "URL": "/switch/&lt;switch id&gt;"
             },
-            "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "req":[
+                {
+                    "attr": "lc_id",
+                    "desc": "Local controller id of switch",
+                    "ex": "234"
+                },
+                {
+                    "attr": "dpid",
+                    "desc": "Datapath id of switch",
+                    "ex": "00000001"
+                },
+                {
+                    "attr": "ip",
+                    "desc": "IP address of switch",
+                    "ex": "10.0.4.10"
+                },
+                {
+                    "attr": "desc",
+                    "desc": "Description of switch",
+                    "ex": "Switch in room 234"
+                },
+                {
+                    "attr": "getway",
+                    "desc": "Is switch getway(Boolean)",
+                    "ex": "True"
+                }
+            ],
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "Switch id in database",
+                    "ex": "123"
+                },
+                {
+                    "attr": "lc_id",
+                    "desc": "Local controller id of switch",
+                    "ex": "234"
+                },
+                {
+                    "attr": "dpid",
+                    "desc": "Datapath id of switch",
+                    "ex": "00000001"
+                },
+                {
+                    "attr": "ip",
+                    "desc": "IP address of switch",
+                    "ex": "10.0.4.10"
+                },
+                {
+                    "attr": "desc",
+                    "desc": "Description of switch",
+                    "ex": "Switch in room 234"
+                },
+                {
+                    "attr": "getway",
+                    "desc": "Is switch getway(Boolean)",
+                    "ex": "True"
+                }
+            ],
+            "exp_u": "$ curl -X POST –d ‘{ \\<br>    “dpid”: “00000003”, \\<br>    “getway”: false \\<br>}’ \\<br>http://example.com/switch/123 ",
+            "exp_res": "{<br>  ‘id’: 123,<br>  ‘lc_id’: 234,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘getway’: true<br>}"
         },
         {
             "name": "Delete a switch data from database",
-            "desc": "",
+            "desc": "Remove switch data from database ",
             "usage": {
-                "method": "GET",
-                "URL": "/"
+                "method": "DELETE",
+                "URL": "/switch/&lt;switch id&gt;"
             },
             "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "Switch id in database",
+                    "ex": "123"
+                },
+                {
+                    "attr": "lc_id",
+                    "desc": "Local controller id of switch",
+                    "ex": "234"
+                },
+                {
+                    "attr": "dpid",
+                    "desc": "Datapath id of switch",
+                    "ex": "00000001"
+                },
+                {
+                    "attr": "ip",
+                    "desc": "IP address of switch",
+                    "ex": "10.0.4.10"
+                },
+                {
+                    "attr": "desc",
+                    "desc": "Description of switch",
+                    "ex": "Switch in room 234"
+                },
+                {
+                    "attr": "getway",
+                    "desc": "Is switch getway(Boolean)",
+                    "ex": "True"
+                }
+            ],
+            "exp_u": "$ curl -X DELETE http://example.com/switch/123",
+            "exp_res": "{<br>  ‘id’: 123,<br>  ‘lc_id’: 234,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘getway’: true<br>}"
         }
     ],
     "Link Data API":[
         {
             "name": "Get all links data from local controller",
-            "desc": "",
+            "desc": "Return all links id from specific local controller.",
             "usage": {
                 "method": "GET",
-                "URL": "/"
+                "URL": "/controller/&lt;controller id&gt;/links"
             },
             "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "link id from database",
+                    "ex": "10"
+                },
+                {
+                    "attr": "src_sw_id",
+                    "desc": "id of source switch",
+                    "ex": "23"
+                },
+                {
+                    "attr": "dst_sw_id",
+                    "desc": "id of destination switch",
+                    "ex": "49"
+                },
+                {
+                    "attr": "src_port",
+                    "desc": "id of source port",
+                    "ex": "34"
+                },
+                {
+                    "attr": "dst_port",
+                    "desc": "id of destination port",
+                    "ex": "67"
+                },
+                {
+                    "attr": "status",
+                    "desc": "link status",
+                    "ex": "“available”"
+                }
+            ],
+            "exp_u": "$ curl -x http://example.com/controller/234/links",
+            "exp_res": "[<br>  {<br>    “id”: 10,<br>    “src_sw_id”: 23,<br>    “dst_sw_id”: 49,<br>    “src_port”: 34,<br>    “dst_port”: 67,<br>    “status”: “available”<br>  },<br>  {<br>    “id”: 11,<br>    “src_sw_id”: 24,<br>    “dst_sw_id”: 32,<br>    “src_port”: 12,<br>    “dst_port”: 10,<br>    “status”: “available”<br>  }<br>]"
         },
         {
             "name": "Get link data",
-            "desc": "",
+            "desc": "Get link detail by link id ",
             "usage": {
                 "method": "GET",
-                "URL": "/"
+                "URL": "/link/&lt;link id&gt;"
             },
             "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "link id from database",
+                    "ex": "10"
+                },
+                {
+                    "attr": "src_sw_id",
+                    "desc": "id of source switch",
+                    "ex": "23"
+                },
+                {
+                    "attr": "dst_sw_id",
+                    "desc": "id of destination switch",
+                    "ex": "49"
+                },
+                {
+                    "attr": "src_port",
+                    "desc": "id of source port",
+                    "ex": "34"
+                },
+                {
+                    "attr": "dst_port",
+                    "desc": "id of destination port",
+                    "ex": "67"
+                },
+                {
+                    "attr": "status",
+                    "desc": "link status",
+                    "ex": "“available”"
+                }
+            ],
+            "exp_u": "$ curl -x http://example.com/link/10",
+            "exp_res": "{<br>  “id”: 10,<br>  “src_sw_id”: 23,<br>  “dst_sw_id”: 49,<br>  “src_port”: 34,<br>  “dst_port”: 67,<br>  “status”: “available”<br>}"
         },
         {
             "name": "Add a link",
-            "desc": "",
+            "desc": "Add link data to database",
             "usage": {
-                "method": "GET",
-                "URL": "/"
+                "method": "POST",
+                "URL": "/link"
             },
-            "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "req":[
+                {
+                    "attr": "src_sw_id",
+                    "desc": "id of source switch",
+                    "ex": "23"
+                },
+                {
+                    "attr": "dst_sw_id",
+                    "desc": "id of destination switch",
+                    "ex": "49"
+                },
+                {
+                    "attr": "src_port",
+                    "desc": "id of source port",
+                    "ex": "34"
+                },
+                {
+                    "attr": "dst_port",
+                    "desc": "id of destination port",
+                    "ex": "67"
+                },
+                {
+                    "attr": "status",
+                    "desc": "link status",
+                    "ex": "“available”"
+                }
+            ],
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "link id from database",
+                    "ex": "10"
+                },
+                {
+                    "attr": "src_sw_id",
+                    "desc": "id of source switch",
+                    "ex": "23"
+                },
+                {
+                    "attr": "dst_sw_id",
+                    "desc": "id of destination switch",
+                    "ex": "49"
+                },
+                {
+                    "attr": "src_port",
+                    "desc": "id of source port",
+                    "ex": "34"
+                },
+                {
+                    "attr": "dst_port",
+                    "desc": "id of destination port",
+                    "ex": "67"
+                },
+                {
+                    "attr": "status",
+                    "desc": "link status",
+                    "ex": "“available”"
+                }
+            ],
+            "exp_u": "$ curl -X POST -d ‘{ \\<br>  “id”: 10, \\<br>  “src_sw_id”: 23, \\<br>  “dst_sw_id”: 49, \\<br>  “src_port”: 34, \\<br>  “dst_port”: 67, \\<br>  “status”: “available” \\<br>}’ \\<br>http://example.com/link",
+            "exp_res": "{<br>  “id”: 10,<br>  “src_sw_id”: 23,<br>  “dst_sw_id”: 49,<br>  “src_port”: 34,<br>  “dst_port”: 67,<br>  “status”: “available”<br>}"
         },
         {
             "name": "Update link data",
-            "desc": "",
+            "desc": "Update link data to database ",
             "usage": {
-                "method": "GET",
-                "URL": "/"
+                "method": "POST",
+                "URL": "/link/&lt;link id&gt;"
             },
-            "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "req":[
+                {
+                    "attr": "src_sw_id",
+                    "desc": "id of source switch",
+                    "ex": "23"
+                },
+                {
+                    "attr": "dst_sw_id",
+                    "desc": "id of destination switch",
+                    "ex": "49"
+                },
+                {
+                    "attr": "src_port",
+                    "desc": "id of source port",
+                    "ex": "34"
+                },
+                {
+                    "attr": "dst_port",
+                    "desc": "id of destination port",
+                    "ex": "67"
+                },
+                {
+                    "attr": "status",
+                    "desc": "link status",
+                    "ex": "“available”"
+                }
+            ],
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "link id from database",
+                    "ex": "10"
+                },
+                {
+                    "attr": "src_sw_id",
+                    "desc": "id of source switch",
+                    "ex": "23"
+                },
+                {
+                    "attr": "dst_sw_id",
+                    "desc": "id of destination switch",
+                    "ex": "49"
+                },
+                {
+                    "attr": "src_port",
+                    "desc": "id of source port",
+                    "ex": "34"
+                },
+                {
+                    "attr": "dst_port",
+                    "desc": "id of destination port",
+                    "ex": "67"
+                },
+                {
+                    "attr": "status",
+                    "desc": "link status",
+                    "ex": "“available”"
+                }
+            ],
+            "exp_u": "$ curl -X POST -d ‘{ \\<br>  “dst_sw_id”: 50, \\<br>  “dst_port”: 101, \\<br>  “status”: “available” \\<br>}’ \\<br>http://example.com/link/10",
+            "exp_res": "{<br>  “id”: 10,<br>  “src_sw_id”: 23,<br>  “dst_sw_id”: 50,<br>  “src_port”: 34,<br>  “dst_port”: 101,<br>  “status”: “available”<br>}"
         },
         {
             "name": "Delete link data",
-            "desc": "",
+            "desc": "Remove link data from database. ",
             "usage": {
-                "method": "GET",
-                "URL": "/"
+                "method": "DELETE",
+                "URL": "/link/&lt;link id&gt;"
             },
             "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "link id from database",
+                    "ex": "10"
+                },
+                {
+                    "attr": "src_sw_id",
+                    "desc": "id of source switch",
+                    "ex": "23"
+                },
+                {
+                    "attr": "dst_sw_id",
+                    "desc": "id of destination switch",
+                    "ex": "49"
+                },
+                {
+                    "attr": "src_port",
+                    "desc": "id of source port",
+                    "ex": "34"
+                },
+                {
+                    "attr": "dst_port",
+                    "desc": "id of destination port",
+                    "ex": "67"
+                },
+                {
+                    "attr": "status",
+                    "desc": "link status",
+                    "ex": "“available”"
+                }
+            ],
+            "exp_u": "$ curl -X DELETE http://example.com/link/10",
+            "exp_res": "{<br>  “id”: 10,<br>  “src_sw_id”: 23,<br>  “dst_sw_id”: 50,<br>  “src_port”: 34,<br>  “dst_port”: 101,<br>  “status”: “available”<br>}"
         }
     ],
     "Port Data API":[
         {
             "name": "Get all port",
-            "desc": "",
+            "desc": "Get all port data from from specific switch",
             "usage": {
                 "method": "GET",
-                "URL": "/"
+                "URL": "/switch/&lt;switch id&gt;/ports"
             },
             "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "port id from database",
+                    "ex": "10"
+                },
+                {
+                    "attr": "sw_id",
+                    "desc": "switch id for this port",
+                    "ex": "234"
+                },
+                {
+                    "attr": "mac",
+                    "desc": "mac address",
+                    "ex": "“01:23:45:67:89:AB”"
+                },
+                {
+                    "attr": "port_no",
+                    "desc": "port number",
+                    "ex": "5"
+                },
+                {
+                    "attr": "status",
+                    "desc": "port status",
+                    "ex": "“available”"
+                }
+            ],
+            "exp_u": "$ curl -X GET http://example.com/switch/234/ports",
+            "exp_res": "[<br>  {<br>    “id”: 10,<br>    “sw_id”: 234,<br>    “mac”: “01:23:45:67:89:AB”,<br>    “port_no”: 5,<br>    “status”: “available”<br>  },<br>  {<br>    “id”: 11,<br>    “sw_id”: 234,<br>    “mac”: “01:23:45:67:89:AD”,<br>    “port_no”: 7,<br>    “status”: “available”<br>  },<br>  {<br>    “id”: 12,<br>    “sw_id”: 234,<br>    “mac”: “01:23:45:67:89:AE”,<br>    “port_no”: 8,<br>    “status”: “available”<br>  }<br>]"
         },
         {
             "name": "Get port data",
-            "desc": "",
+            "desc": "Get single port data from database",
             "usage": {
                 "method": "GET",
-                "URL": "/"
+                "URL": "/port/&lt;port id&gt;"
             },
             "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "port id from database",
+                    "ex": "10"
+                },
+                {
+                    "attr": "sw_id",
+                    "desc": "switch id for this port",
+                    "ex": "234"
+                },
+                {
+                    "attr": "mac",
+                    "desc": "mac address",
+                    "ex": "“01:23:45:67:89:AB”"
+                },
+                {
+                    "attr": "port_no",
+                    "desc": "port number",
+                    "ex": "5"
+                },
+                {
+                    "attr": "status",
+                    "desc": "port status",
+                    "ex": "“available”"
+                }
+            ],
+            "exp_u": "$ curl -X GET http://example.com/port/10",
+            "exp_res": "{<br>  “id”: 10,<br>  “sw_id”: 234,<br>  “mac”: “01:23:45:67:89:AB”,<br>  “port_no”: 5,<br>  “status”: “available”<br>}"
         },
         {
             "name": "Add port data",
-            "desc": "",
+            "desc": "Add a port data to switch",
             "usage": {
-                "method": "GET",
-                "URL": "/"
+                "method": "POST",
+                "URL": "/port"
             },
-            "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "req":[
+                {
+                    "attr": "sw_id",
+                    "desc": "switch id for this port",
+                    "ex": "234"
+                },
+                {
+                    "attr": "mac",
+                    "desc": "mac address",
+                    "ex": "“01:23:45:67:89:AB”"
+                },
+                {
+                    "attr": "port_no",
+                    "desc": "port number",
+                    "ex": "5"
+                },
+                {
+                    "attr": "status",
+                    "desc": "port status",
+                    "ex": "“available”"
+                }
+            ],
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "port id from database",
+                    "ex": "10"
+                },
+                {
+                    "attr": "sw_id",
+                    "desc": "switch id for this port",
+                    "ex": "234"
+                },
+                {
+                    "attr": "mac",
+                    "desc": "mac address",
+                    "ex": "“01:23:45:67:89:AB”"
+                },
+                {
+                    "attr": "port_no",
+                    "desc": "port number",
+                    "ex": "5"
+                },
+                {
+                    "attr": "status",
+                    "desc": "port status",
+                    "ex": "“available”"
+                }
+            ],
+            "exp_u": "$ curl -X POST -d ‘{ \\<br>  “id”: 10, \\<br>  “sw_id”: 234, \\<br>  “mac”: “01:23:45:67:89:AB”, \\<br>  “port_no”: 5, \\<br>  “status”: “available” \\<br>} \\<br>http://example.com/port",
+            "exp_res": "{<br>  “id”: 10,<br>  “sw_id”: 234,<br>  “mac”: “01:23:45:67:89:AB”,<br>  “port_no”: 5,<br>  “status”: “available”<br>}"
         },
         {
             "name": "Update port data",
-            "desc": "",
+            "desc": "Update port data with port id and port data",
             "usage": {
-                "method": "GET",
-                "URL": "/"
+                "method": "POST",
+                "URL": "/port/&lt;port id&gt;"
             },
-            "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "req":[
+                {
+                    "attr": "sw_id",
+                    "desc": "switch id for this port",
+                    "ex": "234"
+                },
+                {
+                    "attr": "mac",
+                    "desc": "mac address",
+                    "ex": "“01:23:45:67:89:AB”"
+                },
+                {
+                    "attr": "port_no",
+                    "desc": "port number",
+                    "ex": "5"
+                },
+                {
+                    "attr": "status",
+                    "desc": "port status",
+                    "ex": "“available”"
+                }
+            ],
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "port id from database",
+                    "ex": "10"
+                },
+                {
+                    "attr": "sw_id",
+                    "desc": "switch id for this port",
+                    "ex": "234"
+                },
+                {
+                    "attr": "mac",
+                    "desc": "mac address",
+                    "ex": "“01:23:45:67:89:AB”"
+                },
+                {
+                    "attr": "port_no",
+                    "desc": "port number",
+                    "ex": "5"
+                },
+                {
+                    "attr": "status",
+                    "desc": "port status",
+                    "ex": "“available”"
+                }
+            ],
+            "exp_u": "$ curl -X POST /port/10 -d ‘{ \\<br>  “mac”: “01:23:45:67:89:AC”, \\<br>  “port_no”: 7, \\<br>  “status”: “unavailable” \\<br>} \\<br>http://example.com/port/10",
+            "exp_res": "{<br>  “id”: 10,<br>  “sw_id”: 234,<br>  “mac”: “01:23:45:67:89:AC”,<br>  “port_no”: 7,<br>  “status”: “unavailable”<br>}"
         },
         {
             "name": "Delete port data",
-            "desc": "",
+            "desc": "Delete port data from database by using port id",
             "usage": {
-                "method": "GET",
-                "URL": "/"
+                "method": "DELETE",
+                "URL": "/port/&lt;port id&gt;"
             },
             "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "port id from database",
+                    "ex": "10"
+                },
+                {
+                    "attr": "sw_id",
+                    "desc": "switch id for this port",
+                    "ex": "234"
+                },
+                {
+                    "attr": "mac",
+                    "desc": "mac address",
+                    "ex": "“01:23:45:67:89:AB”"
+                },
+                {
+                    "attr": "port_no",
+                    "desc": "port number",
+                    "ex": "5"
+                },
+                {
+                    "attr": "status",
+                    "desc": "port status",
+                    "ex": "“available”"
+                }
+            ],
+            "exp_u": "$ curl -X DELETE http://example.com/port/10",
+            "exp_res": "{<br>  “id”: 10,<br>  “sw_id”: 234,<br>  “mac”: “01:23:45:67:89:AC”,<br>  “port_no”: 7,<br>  “status”: “unavailable”<br>}"
         }
     ],
     "Host Data API":[
         {
             "name": "Get all host data from controller",
-            "desc": "",
+            "desc": "Get all host data from database by using controller id",
             "usage": {
                 "method": "GET",
-                "URL": "/"
+                "URL": "/controller/&lt;controller id&gt;/hosts"
             },
             "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "Host id from database",
+                    "ex": "5"
+                },
+                {
+                    "attr": "mac",
+                    "desc": "Mac address of host",
+                    "ex": "“12:34:56:78:90:AB”"
+                },
+                {
+                    "attr": "port_id",
+                    "desc": "Switch port id",
+                    "ex": "4"
+                },
+                {
+                    "attr": "desc",
+                    "desc": "Description of host",
+                    "ex": "“Web server in room 345”"
+                }
+            ],
+            "exp_u": "$ curl -x GET http://example.com/controller/234/hosts",
+            "exp_res": "[<br>  {<br>    “id”: 5,<br>    “mac”: “12:34:56:78:90:AB”,<br>    “port_id”: 7,<br>    “desc”: “Web server in room 345”<br>  },<br>  {<br>    “id”: 6,<br>    “mac”: “12:34:56:78:90:AC”,<br>    “port_id”: 8,<br>    “desc”: “DB server in room 345”<br>  }<br>]"
         },
         {
             "name": "Get host data",
-            "desc": "",
+            "desc": "Get single host data from database by using host id",
             "usage": {
                 "method": "GET",
-                "URL": "/"
+                "URL": "/host/&lt;host id&gt;"
             },
             "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "Host id from database",
+                    "ex": "5"
+                },
+                {
+                    "attr": "mac",
+                    "desc": "Mac address of host",
+                    "ex": "“12:34:56:78:90:AB”"
+                },
+                {
+                    "attr": "port_id",
+                    "desc": "Switch port id",
+                    "ex": "4"
+                },
+                {
+                    "attr": "desc",
+                    "desc": "Description of host",
+                    "ex": "“Web server in room 345”"
+                }
+            ],
+            "exp_u": "$ curl -X GET http://example.com/host/5",
+            "exp_res": "{<br>  “id”: 5,<br>  “mac”: “12:34:56:78:90:AB”,<br>  “port_id”: 7,<br>  “desc”: “Web server in room 345”<br>}"
         },
         {
             "name": "Add host data",
-            "desc": "",
+            "desc": "Add host data to database",
             "usage": {
-                "method": "GET",
-                "URL": "/"
+                "method": "POST",
+                "URL": "/host"
             },
-            "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "req":[
+                {
+                    "attr": "mac",
+                    "desc": "Mac address of host",
+                    "ex": "“12:34:56:78:90:AB”"
+                },
+                {
+                    "attr": "port_id",
+                    "desc": "Switch port id",
+                    "ex": "4"
+                },
+                {
+                    "attr": "desc",
+                    "desc": "Description of host",
+                    "ex": "“Web server in room 345”"
+                }
+            ],
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "Host id from database",
+                    "ex": "5"
+                },
+                {
+                    "attr": "mac",
+                    "desc": "Mac address of host",
+                    "ex": "“12:34:56:78:90:AB”"
+                },
+                {
+                    "attr": "port_id",
+                    "desc": "Switch port id",
+                    "ex": "4"
+                },
+                {
+                    "attr": "desc",
+                    "desc": "Description of host",
+                    "ex": "“Web server in room 345”"
+                }
+            ],
+            "exp_u": "$ curl -X POST -d ‘{ \\<br>  “mac”: “12:34:56:78:90:AB”, \\<br>  “port_id”: 7, \\<br>  “desc”: “Web server in room 345” \\<br>} \\<br>http://example.com/host",
+            "exp_res": "{<br>  “id”: 5,<br>  “mac”: “12:34:56:78:90:AB”,<br>  “port_id”: 7,<br>  “desc”: “Web server in room 345”<br>}"
         },
         {
             "name": "Update host data",
-            "desc": "",
+            "desc": "Update host data to database",
             "usage": {
-                "method": "GET",
-                "URL": "/"
+                "method": "POST",
+                "URL": "/host/&lt;host id&gt;"
             },
-            "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "req":[
+                {
+                    "attr": "mac",
+                    "desc": "Mac address of host",
+                    "ex": "“12:34:56:78:90:AB”"
+                },
+                {
+                    "attr": "port_id",
+                    "desc": "Switch port id",
+                    "ex": "4"
+                },
+                {
+                    "attr": "desc",
+                    "desc": "Description of host",
+                    "ex": "“Web server in room 345”"
+                }
+            ],
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "Host id from database",
+                    "ex": "5"
+                },
+                {
+                    "attr": "mac",
+                    "desc": "Mac address of host",
+                    "ex": "“12:34:56:78:90:AB”"
+                },
+                {
+                    "attr": "port_id",
+                    "desc": "Switch port id",
+                    "ex": "4"
+                },
+                {
+                    "attr": "desc",
+                    "desc": "Description of host",
+                    "ex": "“Web server in room 345”"
+                }
+            ],
+            "exp_u": "$ curl -X POST -d ‘{ \\<br>  “mac”: “12:34:56:78:90:AB”, \\<br>  “port_id”: 7, \\<br>  “desc”: “Web server in room 345” \\<br>} \\<br>http://example.com/host/5",
+            "exp_res": "{<br>  “id”: 5,<br>  “mac”: “12:34:56:78:90:AB”,<br>  “port_id”: 7,<br>  “desc”: “Web server in room 345”<br>}"
         },
         {
             "name": "Remove host data",
-            "desc": "",
+            "desc": "Delete host data from database",
             "usage": {
-                "method": "GET",
-                "URL": "/"
+                "method": "DELETE",
+                "URL": "/host/&lt;host id&gt;"
             },
             "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "Host id from database",
+                    "ex": "5"
+                },
+                {
+                    "attr": "mac",
+                    "desc": "Mac address of host",
+                    "ex": "“12:34:56:78:90:AB”"
+                },
+                {
+                    "attr": "port_id",
+                    "desc": "Switch port id",
+                    "ex": "4"
+                },
+                {
+                    "attr": "desc",
+                    "desc": "Description of host",
+                    "ex": "“Web server in room 345”"
+                }
+            ],
+            "exp_u": "$ curl -X DELETE http://example.com/host/5",
+            "exp_res": "{<br>  “id”: 5,<br>  “mac”: “12:34:56:78:90:AB”,<br>  “port_id”: 7,<br>  “desc”: “Web server in room 345”<br>}"
         }
     ],
     "Flow entry Data API":[
         {
             "name": "Get all flow entry data",
-            "desc": "",
+            "desc": "Get all flow entry data from database by using switch id.",
             "usage": {
                 "method": "GET",
-                "URL": "/"
+                "URL": "/switch/&lt;switch id&gt;/flow-entries"
             },
             "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "flow entry id from database",
+                    "ex": "12"
+                },
+                {
+                    "attr": "buffer_id",
+                    "desc": "buffer id for the entry",
+                    "ex": "45"
+                },
+                {
+                    "attr": "cookie",
+                    "desc": "cookie for the entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "cookie_mask",
+                    "desc": "cookie mask for the entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "sw_id",
+                    "desc": "switch id for for this entry",
+                    "ex": "45"
+                },
+                {
+                    "attr": "flags",
+                    "desc": "entry flags",
+                    "ex": "0"
+                },
+                {
+                    "attr": "hard_timeout",
+                    "desc": "hard timeout for this entry",
+                    "ex": "100"
+                },
+                {
+                    "attr": "idle_timeout",
+                    "desc": "idle time out for this entry",
+                    "ex": "600"
+                },
+                {
+                    "attr": "priority",
+                    "desc": "priority for this entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "table_id",
+                    "desc": "table id for this entry",
+                    "ex": "1"
+                },
+                {
+                    "attr": "match_in_port",
+                    "desc": "in port for this entry match",
+                    "ex": "5"
+                },
+                {
+                    "attr": "match_eth_dst",
+                    "desc": "ethernet destination for this entry match",
+                    "ex": "“192.168.0.4”"
+                },
+                {
+                    "attr": "match_eth_src",
+                    "desc": "ethernet source for this entry match",
+                    "ex": "“192.168.0.10”"
+                },
+                {
+                    "attr": "match_vlan_vid",
+                    "desc": "vlan id for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "match_ipv4_src",
+                    "desc": "IPv4 source for this entry match",
+                    "ex": "“10.0.5.12”"
+                },
+                {
+                    "attr": "match_ipv4_dst",
+                    "desc": "IPv4 destination for this entry match",
+                    "ex": "“10.0.5.59”"
+                },
+                {
+                    "attr": "match_ipv6_src",
+                    "desc": "IPv6 source for this entry match",
+                    "ex": "“2001:0DB8:02de:0000:0000:0000:0000:0e13”"
+                },
+                {
+                    "attr": "match_ipv6_dst",
+                    "desc": "IPv6 destination for this entry match",
+                    "ex": "“2001:0DB8:02de:0000:1250:0fc2:1090:0f78”"
+                },
+                {
+                    "attr": "match_mpls_label",
+                    "desc": "mlps for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "match_tunnel_id",
+                    "desc": "tunnel id for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "action_output_port",
+                    "desc": "output port for this entry action",
+                    "ex": "5"
+                },
+                {
+                    "attr": "action_group_id",
+                    "desc": "group id for this entry action",
+                    "ex": "8"
+                },
+                {
+                    "attr": "action_queue_id",
+                    "desc": "queue id for this entry action",
+                    "ex": "7"
+                },
+                {
+                    "attr": "raw",
+                    "desc": "raw text data for this flow entry (json)",
+                    "ex": "“{<br>  “buffer_id”:0,<br>  “cookie”: 0,<br>  ……<br>}”"
+                },
+                {
+                    "attr": "timestamp",
+                    "desc": "when the entry created<br>*Unix timestmp",
+                    "ex": "1417768230"
+                },
+                {
+                    "attr": "available",
+                    "desc": "is the flow entry available?(boolean)",
+                    "ex": "True"
+                }
+            ],
+            "exp_u": "$ curl -X GET http://example.com/switch/234/flow-entries",
+            "exp_res": "[<br>  {<br>    \"id\": 12,<br>    \"buffer_id\": 45,<br>    \"cookie\": 0,<br>    \"cookie_mask\": 0,<br>    \"sw_id\": 234,<br>    \"flags\": 0,<br>    \"hard_timeout\": 100,<br>    \"idle_timeout\": 600,<br>    \"priority\": 0,<br>    \"table_id\": 1,<br>    \"match_in_port\": 5,<br>    \"match_eth_dst\": \"192.168.0.4\",<br>    \"match_eth_src\": \"192.168.0.10\",<br>    \"match_vlan_vid\": 0,<br>    \"match_ipv4_src\": \"10.0.5.12\",<br>    \"match_ipv4_dst\": \"10.0.5.59\",<br>    \"match_ipv6_src\": \"2001:0DB8:02de:0000:0000:0000:0000:0e13\",<br>    \"match_ipv6_dst\": \"2001:0DB8:02de:0000:1250:0fc2:1090:0f78\",<br>    \"match_mpls_label\": 0,<br>    \"match_tunnel_id\": 0,<br>    \"action_output_port\": 5,<br>    \"action_group_id\": 8,<br>    \"action_queue_id\": 7,<br>    \"raw\": “{…}”,<br>    \"timestamp\": 1417768230,<br>    \"available\": True,<br>  },<br>  ……<br>]"
         },
         {
             "name": "Get single flow entry data",
-            "desc": "",
+            "desc": "Get single flow entry data from database by using flow entry id",
             "usage": {
                 "method": "GET",
-                "URL": "/"
+                "URL": "/flow-entry/&lt;flow entry id&gt;"
             },
             "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "flow entry id from database",
+                    "ex": "12"
+                },
+                {
+                    "attr": "buffer_id",
+                    "desc": "buffer id for the entry",
+                    "ex": "45"
+                },
+                {
+                    "attr": "cookie",
+                    "desc": "cookie for the entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "cookie_mask",
+                    "desc": "cookie mask for the entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "sw_id",
+                    "desc": "switch id for for this entry",
+                    "ex": "45"
+                },
+                {
+                    "attr": "flags",
+                    "desc": "entry flags",
+                    "ex": "0"
+                },
+                {
+                    "attr": "hard_timeout",
+                    "desc": "hard timeout for this entry",
+                    "ex": "100"
+                },
+                {
+                    "attr": "idle_timeout",
+                    "desc": "idle time out for this entry",
+                    "ex": "600"
+                },
+                {
+                    "attr": "priority",
+                    "desc": "priority for this entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "table_id",
+                    "desc": "table id for this entry",
+                    "ex": "1"
+                },
+                {
+                    "attr": "match_in_port",
+                    "desc": "in port for this entry match",
+                    "ex": "5"
+                },
+                {
+                    "attr": "match_eth_dst",
+                    "desc": "ethernet destination for this entry match",
+                    "ex": "“192.168.0.4”"
+                },
+                {
+                    "attr": "match_eth_src",
+                    "desc": "ethernet source for this entry match",
+                    "ex": "“192.168.0.10”"
+                },
+                {
+                    "attr": "match_vlan_vid",
+                    "desc": "vlan id for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "match_ipv4_src",
+                    "desc": "IPv4 source for this entry match",
+                    "ex": "“10.0.5.12”"
+                },
+                {
+                    "attr": "match_ipv4_dst",
+                    "desc": "IPv4 destination for this entry match",
+                    "ex": "“10.0.5.59”"
+                },
+                {
+                    "attr": "match_ipv6_src",
+                    "desc": "IPv6 source for this entry match",
+                    "ex": "“2001:0DB8:02de:0000:0000:0000:0000:0e13”"
+                },
+                {
+                    "attr": "match_ipv6_dst",
+                    "desc": "IPv6 destination for this entry match",
+                    "ex": "“2001:0DB8:02de:0000:1250:0fc2:1090:0f78”"
+                },
+                {
+                    "attr": "match_mpls_label",
+                    "desc": "mlps for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "match_tunnel_id",
+                    "desc": "tunnel id for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "action_output_port",
+                    "desc": "output port for this entry action",
+                    "ex": "5"
+                },
+                {
+                    "attr": "action_group_id",
+                    "desc": "group id for this entry action",
+                    "ex": "8"
+                },
+                {
+                    "attr": "action_queue_id",
+                    "desc": "queue id for this entry action",
+                    "ex": "7"
+                },
+                {
+                    "attr": "raw",
+                    "desc": "raw text data for this flow entry (json)",
+                    "ex": "“{<br>  “buffer_id”:0,<br>  “cookie”: 0,<br>  ……<br>}”"
+                },
+                {
+                    "attr": "timestamp",
+                    "desc": "when the entry created<br>*Unix timestmp",
+                    "ex": "1417768230"
+                },
+                {
+                    "attr": "available",
+                    "desc": "is the flow entry available?(boolean)",
+                    "ex": "True"
+                }
+            ],
+            "exp_u": "$ curl -X GET http://example.com/flow-entry/12",
+            "exp_res": "{<br>    \"id\": 12,<br>    \"buffer_id\": 45,<br>    \"cookie\": 0,<br>    \"cookie_mask\": 0,<br>    \"sw_id\": 234,<br>    \"flags\": 0,<br>    \"hard_timeout\": 100,<br>    \"idle_timeout\": 600,<br>    \"priority\": 0,<br>    \"table_id\": 1,<br>    \"match_in_port\": 5,<br>    \"match_eth_dst\": \"192.168.0.4\",<br>    \"match_eth_src\": \"192.168.0.10\",<br>    \"match_vlan_vid\": 0,<br>    \"match_ipv4_src\": \"10.0.5.12\",<br>    \"match_ipv4_dst\": \"10.0.5.59\",<br>    \"match_ipv6_src\": \"2001:0DB8:02de:0000:0000:0000:0000:0e13\",<br>    \"match_ipv6_dst\": \"2001:0DB8:02de:0000:1250:0fc2:1090:0f78\",<br>    \"match_mpls_label\": 0,<br>    \"match_tunnel_id\": 0,<br>    \"action_output_port\": 5,<br>    \"action_group_id\": 8,<br>    \"action_queue_id\": 7,<br>    \"raw\": “{…}\",<br>    \"timestamp\": 1417768230,<br>    \"available\": True<br>}"
         },
         {
             "name": "Add flow entry data",
-            "desc": "",
+            "desc": "Add flow entry data to database",
             "usage": {
-                "method": "GET",
-                "URL": "/"
+                "method": "POST",
+                "URL": "/flow-entry"
             },
-            "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "req":[
+                {
+                    "attr": "buffer_id",
+                    "desc": "buffer id for the entry",
+                    "ex": "45"
+                },
+                {
+                    "attr": "cookie",
+                    "desc": "cookie for the entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "cookie_mask",
+                    "desc": "cookie mask for the entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "sw_id",
+                    "desc": "switch id for for this entry",
+                    "ex": "45"
+                },
+                {
+                    "attr": "flags",
+                    "desc": "entry flags",
+                    "ex": "0"
+                },
+                {
+                    "attr": "hard_timeout",
+                    "desc": "hard timeout for this entry",
+                    "ex": "100"
+                },
+                {
+                    "attr": "idle_timeout",
+                    "desc": "idle time out for this entry",
+                    "ex": "600"
+                },
+                {
+                    "attr": "priority",
+                    "desc": "priority for this entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "table_id",
+                    "desc": "table id for this entry",
+                    "ex": "1"
+                },
+                {
+                    "attr": "match_in_port",
+                    "desc": "in port for this entry match",
+                    "ex": "5"
+                },
+                {
+                    "attr": "match_eth_dst",
+                    "desc": "ethernet destination for this entry match",
+                    "ex": "“192.168.0.4”"
+                },
+                {
+                    "attr": "match_eth_src",
+                    "desc": "ethernet source for this entry match",
+                    "ex": "“192.168.0.10”"
+                },
+                {
+                    "attr": "match_vlan_vid",
+                    "desc": "vlan id for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "match_ipv4_src",
+                    "desc": "IPv4 source for this entry match",
+                    "ex": "“10.0.5.12”"
+                },
+                {
+                    "attr": "match_ipv4_dst",
+                    "desc": "IPv4 destination for this entry match",
+                    "ex": "“10.0.5.59”"
+                },
+                {
+                    "attr": "match_ipv6_src",
+                    "desc": "IPv6 source for this entry match",
+                    "ex": "“2001:0DB8:02de:0000:0000:0000:0000:0e13”"
+                },
+                {
+                    "attr": "match_ipv6_dst",
+                    "desc": "IPv6 destination for this entry match",
+                    "ex": "“2001:0DB8:02de:0000:1250:0fc2:1090:0f78”"
+                },
+                {
+                    "attr": "match_mpls_label",
+                    "desc": "mlps for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "match_tunnel_id",
+                    "desc": "tunnel id for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "action_output_port",
+                    "desc": "output port for this entry action",
+                    "ex": "5"
+                },
+                {
+                    "attr": "action_group_id",
+                    "desc": "group id for this entry action",
+                    "ex": "8"
+                },
+                {
+                    "attr": "action_queue_id",
+                    "desc": "queue id for this entry action",
+                    "ex": "7"
+                },
+                {
+                    "attr": "raw",
+                    "desc": "raw text data for this flow entry (json)",
+                    "ex": "“{<br>  “buffer_id”:0,<br>  “cookie”: 0,<br>  ……<br>}”"
+                },
+                {
+                    "attr": "timestamp",
+                    "desc": "when the entry created<br>*Unix timestmp",
+                    "ex": "1417768230"
+                },
+                {
+                    "attr": "available",
+                    "desc": "is the flow entry available?(boolean)",
+                    "ex": "True"
+                }
+            ],
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "flow entry id from database",
+                    "ex": "12"
+                },
+                {
+                    "attr": "buffer_id",
+                    "desc": "buffer id for the entry",
+                    "ex": "45"
+                },
+                {
+                    "attr": "cookie",
+                    "desc": "cookie for the entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "cookie_mask",
+                    "desc": "cookie mask for the entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "sw_id",
+                    "desc": "switch id for for this entry",
+                    "ex": "45"
+                },
+                {
+                    "attr": "flags",
+                    "desc": "entry flags",
+                    "ex": "0"
+                },
+                {
+                    "attr": "hard_timeout",
+                    "desc": "hard timeout for this entry",
+                    "ex": "100"
+                },
+                {
+                    "attr": "idle_timeout",
+                    "desc": "idle time out for this entry",
+                    "ex": "600"
+                },
+                {
+                    "attr": "priority",
+                    "desc": "priority for this entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "table_id",
+                    "desc": "table id for this entry",
+                    "ex": "1"
+                },
+                {
+                    "attr": "match_in_port",
+                    "desc": "in port for this entry match",
+                    "ex": "5"
+                },
+                {
+                    "attr": "match_eth_dst",
+                    "desc": "ethernet destination for this entry match",
+                    "ex": "“192.168.0.4”"
+                },
+                {
+                    "attr": "match_eth_src",
+                    "desc": "ethernet source for this entry match",
+                    "ex": "“192.168.0.10”"
+                },
+                {
+                    "attr": "match_vlan_vid",
+                    "desc": "vlan id for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "match_ipv4_src",
+                    "desc": "IPv4 source for this entry match",
+                    "ex": "“10.0.5.12”"
+                },
+                {
+                    "attr": "match_ipv4_dst",
+                    "desc": "IPv4 destination for this entry match",
+                    "ex": "“10.0.5.59”"
+                },
+                {
+                    "attr": "match_ipv6_src",
+                    "desc": "IPv6 source for this entry match",
+                    "ex": "“2001:0DB8:02de:0000:0000:0000:0000:0e13”"
+                },
+                {
+                    "attr": "match_ipv6_dst",
+                    "desc": "IPv6 destination for this entry match",
+                    "ex": "“2001:0DB8:02de:0000:1250:0fc2:1090:0f78”"
+                },
+                {
+                    "attr": "match_mpls_label",
+                    "desc": "mlps for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "match_tunnel_id",
+                    "desc": "tunnel id for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "action_output_port",
+                    "desc": "output port for this entry action",
+                    "ex": "5"
+                },
+                {
+                    "attr": "action_group_id",
+                    "desc": "group id for this entry action",
+                    "ex": "8"
+                },
+                {
+                    "attr": "action_queue_id",
+                    "desc": "queue id for this entry action",
+                    "ex": "7"
+                },
+                {
+                    "attr": "raw",
+                    "desc": "raw text data for this flow entry (json)",
+                    "ex": "“{<br>  “buffer_id”:0,<br>  “cookie”: 0,<br>  ……<br>}”"
+                },
+                {
+                    "attr": "timestamp",
+                    "desc": "when the entry created<br>*Unix timestmp",
+                    "ex": "1417768230"
+                },
+                {
+                    "attr": "available",
+                    "desc": "is the flow entry available?(boolean)",
+                    "ex": "True"
+                }
+            ],
+            "exp_u": "$ curl -X POST -d ‘{ \\<br>  \"buffer_id\": 45, \\<br>  \"cookie\": 0, \\<br>  \"cookie_mask\": 0, \\<br>  \"sw_id\": 234, \\<br>  \"flags\": 0, \\<br>  \"hard_timeout\": 100, \\<br>  \"idle_timeout\": 600, \\<br>  \"priority\": 0, \\<br>  \"table_id\": 1, \\<br>  \"match_in_port\": 5, \\<br>  \"match_eth_dst\": \"192.168.0.4\", \\<br>  \"match_eth_src\": \"192.168.0.10\", \\<br>  \"match_vlan_vid\": 0, \\<br>  \"match_ipv4_src\": \"10.0.5.12\", \\<br>  \"match_ipv4_dst\": \"10.0.5.59\", \\<br>  \"match_ipv6_src\": \"2001:0DB8:02de:0000:0000:0000:0000:0e13\", \\<br>  \"match_ipv6_dst\": \"2001:0DB8:02de:0000:1250:0fc2:1090:0f78\", \\<br>  \"match_mpls_label\": 0, \\<br>  \"match_tunnel_id\": 0, \\<br>  \"action_output_port\": 5, \\<br>  \"action_group_id\": 8, \\<br>  \"action_queue_id\": 7, \\<br>}’ \\<br>http://example.com/flow-entry",
+            "exp_res": "{<br>    \"id\": 12,<br>    \"buffer_id\": 45,<br>    \"cookie\": 0,<br>    \"cookie_mask\": 0,<br>    \"sw_id\": 234,<br>    \"flags\": 0,<br>    \"hard_timeout\": 100,<br>    \"idle_timeout\": 600,<br>    \"priority\": 0,<br>    \"table_id\": 1,<br>    \"match_in_port\": 5,<br>    \"match_eth_dst\": \"192.168.0.4\",<br>    \"match_eth_src\": \"192.168.0.10\",<br>    \"match_vlan_vid\": 0,<br>    \"match_ipv4_src\": \"10.0.5.12\",<br>    \"match_ipv4_dst\": \"10.0.5.59\",<br>    \"match_ipv6_src\": \"2001:0DB8:02de:0000:0000:0000:0000:0e13\",<br>    \"match_ipv6_dst\": \"2001:0DB8:02de:0000:1250:0fc2:1090:0f78\",<br>    \"match_mpls_label\": 0,<br>    \"match_tunnel_id\": 0,<br>    \"action_output_port\": 5,<br>    \"action_group_id\": 8,<br>    \"action_queue_id\": 7,<br>    \"raw\": “{…}\",<br>    \"timestamp\": 1417768230,<br>    \"available\": True<br>}"
         },
         {
             "name": "Update flow entry data",
-            "desc": "",
+            "desc": "Update flow entry data to database",
             "usage": {
-                "method": "GET",
-                "URL": "/"
+                "method": "POST",
+                "URL": "/flow-entry/&lt;flow entry id&gt;"
             },
-            "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "req":[
+                {
+                    "attr": "buffer_id",
+                    "desc": "buffer id for the entry",
+                    "ex": "45"
+                },
+                {
+                    "attr": "cookie",
+                    "desc": "cookie for the entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "cookie_mask",
+                    "desc": "cookie mask for the entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "sw_id",
+                    "desc": "switch id for for this entry",
+                    "ex": "45"
+                },
+                {
+                    "attr": "flags",
+                    "desc": "entry flags",
+                    "ex": "0"
+                },
+                {
+                    "attr": "hard_timeout",
+                    "desc": "hard timeout for this entry",
+                    "ex": "100"
+                },
+                {
+                    "attr": "idle_timeout",
+                    "desc": "idle time out for this entry",
+                    "ex": "600"
+                },
+                {
+                    "attr": "priority",
+                    "desc": "priority for this entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "table_id",
+                    "desc": "table id for this entry",
+                    "ex": "1"
+                },
+                {
+                    "attr": "match_in_port",
+                    "desc": "in port for this entry match",
+                    "ex": "5"
+                },
+                {
+                    "attr": "match_eth_dst",
+                    "desc": "ethernet destination for this entry match",
+                    "ex": "“192.168.0.4”"
+                },
+                {
+                    "attr": "match_eth_src",
+                    "desc": "ethernet source for this entry match",
+                    "ex": "“192.168.0.10”"
+                },
+                {
+                    "attr": "match_vlan_vid",
+                    "desc": "vlan id for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "match_ipv4_src",
+                    "desc": "IPv4 source for this entry match",
+                    "ex": "“10.0.5.12”"
+                },
+                {
+                    "attr": "match_ipv4_dst",
+                    "desc": "IPv4 destination for this entry match",
+                    "ex": "“10.0.5.59”"
+                },
+                {
+                    "attr": "match_ipv6_src",
+                    "desc": "IPv6 source for this entry match",
+                    "ex": "“2001:0DB8:02de:0000:0000:0000:0000:0e13”"
+                },
+                {
+                    "attr": "match_ipv6_dst",
+                    "desc": "IPv6 destination for this entry match",
+                    "ex": "“2001:0DB8:02de:0000:1250:0fc2:1090:0f78”"
+                },
+                {
+                    "attr": "match_mpls_label",
+                    "desc": "mlps for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "match_tunnel_id",
+                    "desc": "tunnel id for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "action_output_port",
+                    "desc": "output port for this entry action",
+                    "ex": "5"
+                },
+                {
+                    "attr": "action_group_id",
+                    "desc": "group id for this entry action",
+                    "ex": "8"
+                },
+                {
+                    "attr": "action_queue_id",
+                    "desc": "queue id for this entry action",
+                    "ex": "7"
+                },
+                {
+                    "attr": "raw",
+                    "desc": "raw text data for this flow entry (json)",
+                    "ex": "“{<br>  “buffer_id”:0,<br>  “cookie”: 0,<br>  ……<br>}”"
+                },
+                {
+                    "attr": "timestamp",
+                    "desc": "when the entry created<br>*Unix timestmp",
+                    "ex": "1417768230"
+                },
+                {
+                    "attr": "available",
+                    "desc": "is the flow entry available?(boolean)",
+                    "ex": "True"
+                }
+            ],
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "flow entry id from database",
+                    "ex": "12"
+                },
+                {
+                    "attr": "buffer_id",
+                    "desc": "buffer id for the entry",
+                    "ex": "45"
+                },
+                {
+                    "attr": "cookie",
+                    "desc": "cookie for the entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "cookie_mask",
+                    "desc": "cookie mask for the entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "sw_id",
+                    "desc": "switch id for for this entry",
+                    "ex": "45"
+                },
+                {
+                    "attr": "flags",
+                    "desc": "entry flags",
+                    "ex": "0"
+                },
+                {
+                    "attr": "hard_timeout",
+                    "desc": "hard timeout for this entry",
+                    "ex": "100"
+                },
+                {
+                    "attr": "idle_timeout",
+                    "desc": "idle time out for this entry",
+                    "ex": "600"
+                },
+                {
+                    "attr": "priority",
+                    "desc": "priority for this entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "table_id",
+                    "desc": "table id for this entry",
+                    "ex": "1"
+                },
+                {
+                    "attr": "match_in_port",
+                    "desc": "in port for this entry match",
+                    "ex": "5"
+                },
+                {
+                    "attr": "match_eth_dst",
+                    "desc": "ethernet destination for this entry match",
+                    "ex": "“192.168.0.4”"
+                },
+                {
+                    "attr": "match_eth_src",
+                    "desc": "ethernet source for this entry match",
+                    "ex": "“192.168.0.10”"
+                },
+                {
+                    "attr": "match_vlan_vid",
+                    "desc": "vlan id for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "match_ipv4_src",
+                    "desc": "IPv4 source for this entry match",
+                    "ex": "“10.0.5.12”"
+                },
+                {
+                    "attr": "match_ipv4_dst",
+                    "desc": "IPv4 destination for this entry match",
+                    "ex": "“10.0.5.59”"
+                },
+                {
+                    "attr": "match_ipv6_src",
+                    "desc": "IPv6 source for this entry match",
+                    "ex": "“2001:0DB8:02de:0000:0000:0000:0000:0e13”"
+                },
+                {
+                    "attr": "match_ipv6_dst",
+                    "desc": "IPv6 destination for this entry match",
+                    "ex": "“2001:0DB8:02de:0000:1250:0fc2:1090:0f78”"
+                },
+                {
+                    "attr": "match_mpls_label",
+                    "desc": "mlps for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "match_tunnel_id",
+                    "desc": "tunnel id for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "action_output_port",
+                    "desc": "output port for this entry action",
+                    "ex": "5"
+                },
+                {
+                    "attr": "action_group_id",
+                    "desc": "group id for this entry action",
+                    "ex": "8"
+                },
+                {
+                    "attr": "action_queue_id",
+                    "desc": "queue id for this entry action",
+                    "ex": "7"
+                },
+                {
+                    "attr": "raw",
+                    "desc": "raw text data for this flow entry (json)",
+                    "ex": "“{<br>  “buffer_id”:0,<br>  “cookie”: 0,<br>  ……<br>}”"
+                },
+                {
+                    "attr": "timestamp",
+                    "desc": "when the entry created<br>*Unix timestmp",
+                    "ex": "1417768230"
+                },
+                {
+                    "attr": "available",
+                    "desc": "is the flow entry available?(boolean)",
+                    "ex": "True"
+                }
+            ],
+            "exp_u": "$ curl -X POST -d ‘{ \\<br>  \"buffer_id\": 45, \\<br>  \"cookie\": 0, \\<br>  \"cookie_mask\": 0, \\<br>  \"sw_id\": 234, \\<br>  \"flags\": 0, \\<br>  \"hard_timeout\": 100, \\<br>  \"idle_timeout\": 600, \\<br>  \"priority\": 0, \\<br>  \"table_id\": 1, \\<br>  \"match_in_port\": 5, \\<br>  \"match_eth_dst\": \"192.168.0.4\", \\<br>  \"match_eth_src\": \"192.168.0.10\", \\<br>  \"match_vlan_vid\": 0, \\<br>  \"match_ipv4_src\": \"10.0.5.12\", \\<br>  \"match_ipv4_dst\": \"10.0.5.59\", \\<br>  \"match_ipv6_src\": \"2001:0DB8:02de:0000:0000:0000:0000:0e13\", \\<br>  \"match_ipv6_dst\": \"2001:0DB8:02de:0000:1250:0fc2:1090:0f78\", \\<br>  \"match_mpls_label\": 0, \\<br>  \"match_tunnel_id\": 0, \\<br>  \"action_output_port\": 5, \\<br>  \"action_group_id\": 8, \\<br>  \"action_queue_id\": 7, \\<br>}’ \\<br>http://example.com/flow-entry/12",
+            "exp_res": "{<br>    \"id\": 12,<br>    \"buffer_id\": 45,<br>    \"cookie\": 0,<br>    \"cookie_mask\": 0,<br>    \"sw_id\": 234,<br>    \"flags\": 0,<br>    \"hard_timeout\": 100,<br>    \"idle_timeout\": 600,<br>    \"priority\": 0,<br>    \"table_id\": 1,<br>    \"match_in_port\": 5,<br>    \"match_eth_dst\": \"192.168.0.4\",<br>    \"match_eth_src\": \"192.168.0.10\",<br>    \"match_vlan_vid\": 0,<br>    \"match_ipv4_src\": \"10.0.5.12\",<br>    \"match_ipv4_dst\": \"10.0.5.59\",<br>    \"match_ipv6_src\": \"2001:0DB8:02de:0000:0000:0000:0000:0e13\",<br>    \"match_ipv6_dst\": \"2001:0DB8:02de:0000:1250:0fc2:1090:0f78\",<br>    \"match_mpls_label\": 0,<br>    \"match_tunnel_id\": 0,<br>    \"action_output_port\": 5,<br>    \"action_group_id\": 8,<br>    \"action_queue_id\": 7,<br>    \"raw\": “{…}\",<br>    \"timestamp\": 1417768230,<br>    \"available\": True<br>}"
         },
         {
             "name": "Delete flow entry data",
-            "desc": "",
+            "desc": "Remove flow entry data from database",
             "usage": {
-                "method": "GET",
-                "URL": "/"
+                "method": "DELETE",
+                "URL": "/flow-entry/<flow entry id>"
             },
             "req":null,
-            "resp": null,
-            "exp_u": "$ curl -X  http://example.com/",
-            "exp_res": ""
+            "resp": [
+                {
+                    "attr": "id",
+                    "desc": "flow entry id from database",
+                    "ex": "12"
+                },
+                {
+                    "attr": "buffer_id",
+                    "desc": "buffer id for the entry",
+                    "ex": "45"
+                },
+                {
+                    "attr": "cookie",
+                    "desc": "cookie for the entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "cookie_mask",
+                    "desc": "cookie mask for the entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "sw_id",
+                    "desc": "switch id for for this entry",
+                    "ex": "45"
+                },
+                {
+                    "attr": "flags",
+                    "desc": "entry flags",
+                    "ex": "0"
+                },
+                {
+                    "attr": "hard_timeout",
+                    "desc": "hard timeout for this entry",
+                    "ex": "100"
+                },
+                {
+                    "attr": "idle_timeout",
+                    "desc": "idle time out for this entry",
+                    "ex": "600"
+                },
+                {
+                    "attr": "priority",
+                    "desc": "priority for this entry",
+                    "ex": "0"
+                },
+                {
+                    "attr": "table_id",
+                    "desc": "table id for this entry",
+                    "ex": "1"
+                },
+                {
+                    "attr": "match_in_port",
+                    "desc": "in port for this entry match",
+                    "ex": "5"
+                },
+                {
+                    "attr": "match_eth_dst",
+                    "desc": "ethernet destination for this entry match",
+                    "ex": "“192.168.0.4”"
+                },
+                {
+                    "attr": "match_eth_src",
+                    "desc": "ethernet source for this entry match",
+                    "ex": "“192.168.0.10”"
+                },
+                {
+                    "attr": "match_vlan_vid",
+                    "desc": "vlan id for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "match_ipv4_src",
+                    "desc": "IPv4 source for this entry match",
+                    "ex": "“10.0.5.12”"
+                },
+                {
+                    "attr": "match_ipv4_dst",
+                    "desc": "IPv4 destination for this entry match",
+                    "ex": "“10.0.5.59”"
+                },
+                {
+                    "attr": "match_ipv6_src",
+                    "desc": "IPv6 source for this entry match",
+                    "ex": "“2001:0DB8:02de:0000:0000:0000:0000:0e13”"
+                },
+                {
+                    "attr": "match_ipv6_dst",
+                    "desc": "IPv6 destination for this entry match",
+                    "ex": "“2001:0DB8:02de:0000:1250:0fc2:1090:0f78”"
+                },
+                {
+                    "attr": "match_mpls_label",
+                    "desc": "mlps for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "match_tunnel_id",
+                    "desc": "tunnel id for this entry match",
+                    "ex": "0"
+                },
+                {
+                    "attr": "action_output_port",
+                    "desc": "output port for this entry action",
+                    "ex": "5"
+                },
+                {
+                    "attr": "action_group_id",
+                    "desc": "group id for this entry action",
+                    "ex": "8"
+                },
+                {
+                    "attr": "action_queue_id",
+                    "desc": "queue id for this entry action",
+                    "ex": "7"
+                },
+                {
+                    "attr": "raw",
+                    "desc": "raw text data for this flow entry (json)",
+                    "ex": "“{<br>  “buffer_id”:0,<br>  “cookie”: 0,<br>  ……<br>}”"
+                },
+                {
+                    "attr": "timestamp",
+                    "desc": "when the entry created<br>*Unix timestmp",
+                    "ex": "1417768230"
+                },
+                {
+                    "attr": "available",
+                    "desc": "is the flow entry available?(boolean)",
+                    "ex": "True"
+                }
+            ],
+            "exp_u": "$ curl -x DELETE http://example.com/flow-entry/12",
+            "exp_res": "{<br>    \"id\": 12,<br>    \"buffer_id\": 45,<br>    \"cookie\": 0,<br>    \"cookie_mask\": 0,<br>    \"sw_id\": 234,<br>    \"flags\": 0,<br>    \"hard_timeout\": 100,<br>    \"idle_timeout\": 600,<br>    \"priority\": 0,<br>    \"table_id\": 1,<br>    \"match_in_port\": 5,<br>    \"match_eth_dst\": \"192.168.0.4\",<br>    \"match_eth_src\": \"192.168.0.10\",<br>    \"match_vlan_vid\": 0,<br>    \"match_ipv4_src\": \"10.0.5.12\",<br>    \"match_ipv4_dst\": \"10.0.5.59\",<br>    \"match_ipv6_src\": \"2001:0DB8:02de:0000:0000:0000:0000:0e13\",<br>    \"match_ipv6_dst\": \"2001:0DB8:02de:0000:1250:0fc2:1090:0f78\",<br>    \"match_mpls_label\": 0,<br>    \"match_tunnel_id\": 0,<br>    \"action_output_port\": 5,<br>    \"action_group_id\": 8,<br>    \"action_queue_id\": 7,<br>    \"raw\": “{…}\",<br>    \"timestamp\": 1417768230,<br>    \"available\": True<br>}"
         }
     ]
 }

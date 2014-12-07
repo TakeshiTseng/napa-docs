@@ -339,7 +339,7 @@
                     <div class="panel panel-default" id="b3e62ce51eafd32bd90e2b4a25b4bcca">
                         <div class="panel-heading">
                             <h3>Get all switch data from a local controller</h3>
-                            <p></p>
+                            <p>Return all switch data from specific controller </p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
@@ -348,26 +348,58 @@
                                     <th>Method</th><th>GET</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/controller/&lt;controller id&gt;/switches </td>
                                 </tr>
                             </table>
 
                             
 
                             
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>Switch id in database</td><td>123</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>lc_id</td><td>Local controller id of switch</td><td>234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dpid</td><td>Datapath id of switch</td><td>00000001</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>ip</td><td>IP address of switch</td><td>10.0.4.10</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>desc</td><td>Description of switch</td><td>Switch in room 234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>getway</td><td>Is switch getway(Boolean)</td><td>True</td>
+                                </tr>
+                                
+                            </table>
+                            
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl –X GET http://example.com/controller/123/switches</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>[<br>  {<br>    ‘id’: 234,<br>    ‘lc_id’: 123,<br>    ‘dpid’: ‘00000001’,<br>    ‘ip’: “10.0.4.10”,<br>    ‘desc’: “Switch in room 234”,<br>    ‘getway’: True<br>  },<br>  {<br>    ‘id’: 235,<br>    ‘lc_id’: 123,<br>    ‘dpid’: ‘00000002’,<br>    ‘ip’: “10.0.4.11”,<br>    ‘desc’: “Switch in room 235”,<br>    ‘getway’: False<br>  }<br>]</pre>
                         </div>
                     </div>
                     
                     <div class="panel panel-default" id="e2623492313bbbf0fa9872b198d49a3a">
                         <div class="panel-heading">
                             <h3>Get single switch data</h3>
-                            <p></p>
+                            <p>Using switch id and local controller id to get a switch data.</p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
@@ -376,103 +408,287 @@
                                     <th>Method</th><th>GET</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/switch/&lt;switch id&gt;</td>
                                 </tr>
                             </table>
 
                             
 
                             
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>Switch id in database</td><td>123</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>lc_id</td><td>Local controller id of switch</td><td>234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dpid</td><td>Datapath id of switch</td><td>00000001</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>ip</td><td>IP address of switch</td><td>10.0.4.10</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>desc</td><td>Description of switch</td><td>Switch in room 234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>getway</td><td>Is switch getway(Boolean)</td><td>True</td>
+                                </tr>
+                                
+                            </table>
+                            
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -X GET http://example.com/switch/234</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>{<br>  ‘id’: 234,<br>  ‘lc_id’: 123,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘getway’: true<br>}</pre>
                         </div>
                     </div>
                     
                     <div class="panel panel-default" id="6e81a579fd8f62b187407485d329231d">
                         <div class="panel-heading">
                             <h3>Add a switch data to database</h3>
-                            <p></p>
+                            <p>Insert Switch data into database</p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Method</th><th>GET</th>
+                                    <th>Method</th><th>POST</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/switch</td>
                                 </tr>
                             </table>
 
                             
+                            <h4>Request message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>lc_id</td><td>Local controller id of switch</td><td>234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dpid</td><td>Datapath id of switch</td><td>00000001</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>ip</td><td>IP address of switch</td><td>10.0.4.10</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>desc</td><td>Description of switch</td><td>Switch in room 234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>getway</td><td>Is switch getway(Boolean)</td><td>True</td>
+                                </tr>
+                                
+                            </table>
+                            
 
+                            
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>Switch id in database</td><td>123</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>lc_id</td><td>Local controller id of switch</td><td>234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dpid</td><td>Datapath id of switch</td><td>00000001</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>ip</td><td>IP address of switch</td><td>10.0.4.10</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>desc</td><td>Description of switch</td><td>Switch in room 234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>getway</td><td>Is switch getway(Boolean)</td><td>True</td>
+                                </tr>
+                                
+                            </table>
                             
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -X POST -d ‘{ \<br>    “lc_id”: 234, \<br>    “dpid”: “00000001”, \<br>    “ip”: “10.0.4.10”, \<br>    “desc”: “Switch in room 234”, \<br>    “getway”: true \<br>}’ \<br>http://example.com/switch </pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>{<br>  ‘id’: 234,<br>  ‘lc_id’: 123,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘getway’: true<br>}</pre>
                         </div>
                     </div>
                     
                     <div class="panel panel-default" id="3e5cbb4c42f990a76361bdc2e3397a66">
                         <div class="panel-heading">
                             <h3>Update switch data</h3>
-                            <p></p>
+                            <p>Update switch data from database</p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Method</th><th>GET</th>
+                                    <th>Method</th><th>POST</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/switch/&lt;switch id&gt;</td>
                                 </tr>
                             </table>
 
                             
+                            <h4>Request message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>lc_id</td><td>Local controller id of switch</td><td>234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dpid</td><td>Datapath id of switch</td><td>00000001</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>ip</td><td>IP address of switch</td><td>10.0.4.10</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>desc</td><td>Description of switch</td><td>Switch in room 234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>getway</td><td>Is switch getway(Boolean)</td><td>True</td>
+                                </tr>
+                                
+                            </table>
+                            
 
+                            
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>Switch id in database</td><td>123</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>lc_id</td><td>Local controller id of switch</td><td>234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dpid</td><td>Datapath id of switch</td><td>00000001</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>ip</td><td>IP address of switch</td><td>10.0.4.10</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>desc</td><td>Description of switch</td><td>Switch in room 234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>getway</td><td>Is switch getway(Boolean)</td><td>True</td>
+                                </tr>
+                                
+                            </table>
                             
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -X POST –d ‘{ \<br>    “dpid”: “00000003”, \<br>    “getway”: false \<br>}’ \<br>http://example.com/switch/123 </pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>{<br>  ‘id’: 123,<br>  ‘lc_id’: 234,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘getway’: true<br>}</pre>
                         </div>
                     </div>
                     
                     <div class="panel panel-default" id="51b58dfc910441a6524dc99f4047b4c7">
                         <div class="panel-heading">
                             <h3>Delete a switch data from database</h3>
-                            <p></p>
+                            <p>Remove switch data from database </p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Method</th><th>GET</th>
+                                    <th>Method</th><th>DELETE</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/switch/&lt;switch id&gt;</td>
                                 </tr>
                             </table>
 
                             
 
                             
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>Switch id in database</td><td>123</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>lc_id</td><td>Local controller id of switch</td><td>234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dpid</td><td>Datapath id of switch</td><td>00000001</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>ip</td><td>IP address of switch</td><td>10.0.4.10</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>desc</td><td>Description of switch</td><td>Switch in room 234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>getway</td><td>Is switch getway(Boolean)</td><td>True</td>
+                                </tr>
+                                
+                            </table>
+                            
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -X DELETE http://example.com/switch/123</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>{<br>  ‘id’: 123,<br>  ‘lc_id’: 234,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘getway’: true<br>}</pre>
                         </div>
                     </div>
                     
@@ -483,7 +699,7 @@
                     <div class="panel panel-default" id="17b47399ccbcecd27581d3157e5804be">
                         <div class="panel-heading">
                             <h3>Get all links data from local controller</h3>
-                            <p></p>
+                            <p>Return all links id from specific local controller.</p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
@@ -492,26 +708,58 @@
                                     <th>Method</th><th>GET</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/controller/&lt;controller id&gt;/links</td>
                                 </tr>
                             </table>
 
                             
 
                             
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>link id from database</td><td>10</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>src_sw_id</td><td>id of source switch</td><td>23</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dst_sw_id</td><td>id of destination switch</td><td>49</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>src_port</td><td>id of source port</td><td>34</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dst_port</td><td>id of destination port</td><td>67</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>status</td><td>link status</td><td>“available”</td>
+                                </tr>
+                                
+                            </table>
+                            
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -x http://example.com/controller/234/links</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>[<br>  {<br>    “id”: 10,<br>    “src_sw_id”: 23,<br>    “dst_sw_id”: 49,<br>    “src_port”: 34,<br>    “dst_port”: 67,<br>    “status”: “available”<br>  },<br>  {<br>    “id”: 11,<br>    “src_sw_id”: 24,<br>    “dst_sw_id”: 32,<br>    “src_port”: 12,<br>    “dst_port”: 10,<br>    “status”: “available”<br>  }<br>]</pre>
                         </div>
                     </div>
                     
                     <div class="panel panel-default" id="3d1ecd91e27ec04064a6a54806bc7dcb">
                         <div class="panel-heading">
                             <h3>Get link data</h3>
-                            <p></p>
+                            <p>Get link detail by link id </p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
@@ -520,103 +768,287 @@
                                     <th>Method</th><th>GET</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/link/&lt;link id&gt;</td>
                                 </tr>
                             </table>
 
                             
 
                             
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>link id from database</td><td>10</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>src_sw_id</td><td>id of source switch</td><td>23</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dst_sw_id</td><td>id of destination switch</td><td>49</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>src_port</td><td>id of source port</td><td>34</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dst_port</td><td>id of destination port</td><td>67</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>status</td><td>link status</td><td>“available”</td>
+                                </tr>
+                                
+                            </table>
+                            
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -x http://example.com/link/10</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>{<br>  “id”: 10,<br>  “src_sw_id”: 23,<br>  “dst_sw_id”: 49,<br>  “src_port”: 34,<br>  “dst_port”: 67,<br>  “status”: “available”<br>}</pre>
                         </div>
                     </div>
                     
                     <div class="panel panel-default" id="083f62fcae98023532c130f6c6506bd5">
                         <div class="panel-heading">
                             <h3>Add a link</h3>
-                            <p></p>
+                            <p>Add link data to database</p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Method</th><th>GET</th>
+                                    <th>Method</th><th>POST</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/link</td>
                                 </tr>
                             </table>
 
                             
+                            <h4>Request message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>src_sw_id</td><td>id of source switch</td><td>23</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dst_sw_id</td><td>id of destination switch</td><td>49</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>src_port</td><td>id of source port</td><td>34</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dst_port</td><td>id of destination port</td><td>67</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>status</td><td>link status</td><td>“available”</td>
+                                </tr>
+                                
+                            </table>
+                            
 
+                            
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>link id from database</td><td>10</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>src_sw_id</td><td>id of source switch</td><td>23</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dst_sw_id</td><td>id of destination switch</td><td>49</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>src_port</td><td>id of source port</td><td>34</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dst_port</td><td>id of destination port</td><td>67</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>status</td><td>link status</td><td>“available”</td>
+                                </tr>
+                                
+                            </table>
                             
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -X POST -d ‘{ \<br>  “id”: 10, \<br>  “src_sw_id”: 23, \<br>  “dst_sw_id”: 49, \<br>  “src_port”: 34, \<br>  “dst_port”: 67, \<br>  “status”: “available” \<br>}’ \<br>http://example.com/link</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>{<br>  “id”: 10,<br>  “src_sw_id”: 23,<br>  “dst_sw_id”: 49,<br>  “src_port”: 34,<br>  “dst_port”: 67,<br>  “status”: “available”<br>}</pre>
                         </div>
                     </div>
                     
                     <div class="panel panel-default" id="ffd9967847ce66892bfb9a331ce15197">
                         <div class="panel-heading">
                             <h3>Update link data</h3>
-                            <p></p>
+                            <p>Update link data to database </p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Method</th><th>GET</th>
+                                    <th>Method</th><th>POST</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/link/&lt;link id&gt;</td>
                                 </tr>
                             </table>
 
                             
+                            <h4>Request message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>src_sw_id</td><td>id of source switch</td><td>23</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dst_sw_id</td><td>id of destination switch</td><td>49</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>src_port</td><td>id of source port</td><td>34</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dst_port</td><td>id of destination port</td><td>67</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>status</td><td>link status</td><td>“available”</td>
+                                </tr>
+                                
+                            </table>
+                            
 
+                            
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>link id from database</td><td>10</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>src_sw_id</td><td>id of source switch</td><td>23</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dst_sw_id</td><td>id of destination switch</td><td>49</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>src_port</td><td>id of source port</td><td>34</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dst_port</td><td>id of destination port</td><td>67</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>status</td><td>link status</td><td>“available”</td>
+                                </tr>
+                                
+                            </table>
                             
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -X POST -d ‘{ \<br>  “dst_sw_id”: 50, \<br>  “dst_port”: 101, \<br>  “status”: “available” \<br>}’ \<br>http://example.com/link/10</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>{<br>  “id”: 10,<br>  “src_sw_id”: 23,<br>  “dst_sw_id”: 50,<br>  “src_port”: 34,<br>  “dst_port”: 101,<br>  “status”: “available”<br>}</pre>
                         </div>
                     </div>
                     
                     <div class="panel panel-default" id="e77653655b9cefe28456260b1f670618">
                         <div class="panel-heading">
                             <h3>Delete link data</h3>
-                            <p></p>
+                            <p>Remove link data from database. </p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Method</th><th>GET</th>
+                                    <th>Method</th><th>DELETE</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/link/&lt;link id&gt;</td>
                                 </tr>
                             </table>
 
                             
 
                             
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>link id from database</td><td>10</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>src_sw_id</td><td>id of source switch</td><td>23</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dst_sw_id</td><td>id of destination switch</td><td>49</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>src_port</td><td>id of source port</td><td>34</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>dst_port</td><td>id of destination port</td><td>67</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>status</td><td>link status</td><td>“available”</td>
+                                </tr>
+                                
+                            </table>
+                            
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -X DELETE http://example.com/link/10</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>{<br>  “id”: 10,<br>  “src_sw_id”: 23,<br>  “dst_sw_id”: 50,<br>  “src_port”: 34,<br>  “dst_port”: 101,<br>  “status”: “available”<br>}</pre>
                         </div>
                     </div>
                     
@@ -627,7 +1059,7 @@
                     <div class="panel panel-default" id="2bd3097d1538d4abba148a291881c8f8">
                         <div class="panel-heading">
                             <h3>Get all port</h3>
-                            <p></p>
+                            <p>Get all port data from from specific switch</p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
@@ -636,26 +1068,54 @@
                                     <th>Method</th><th>GET</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/switch/&lt;switch id&gt;/ports</td>
                                 </tr>
                             </table>
 
                             
 
                             
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>port id from database</td><td>10</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>sw_id</td><td>switch id for this port</td><td>234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>mac</td><td>mac address</td><td>“01:23:45:67:89:AB”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>port_no</td><td>port number</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>status</td><td>port status</td><td>“available”</td>
+                                </tr>
+                                
+                            </table>
+                            
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -X GET http://example.com/switch/234/ports</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>[<br>  {<br>    “id”: 10,<br>    “sw_id”: 234,<br>    “mac”: “01:23:45:67:89:AB”,<br>    “port_no”: 5,<br>    “status”: “available”<br>  },<br>  {<br>    “id”: 11,<br>    “sw_id”: 234,<br>    “mac”: “01:23:45:67:89:AD”,<br>    “port_no”: 7,<br>    “status”: “available”<br>  },<br>  {<br>    “id”: 12,<br>    “sw_id”: 234,<br>    “mac”: “01:23:45:67:89:AE”,<br>    “port_no”: 8,<br>    “status”: “available”<br>  }<br>]</pre>
                         </div>
                     </div>
                     
                     <div class="panel panel-default" id="f1120d4be6857fe1e749248779efb743">
                         <div class="panel-heading">
                             <h3>Get port data</h3>
-                            <p></p>
+                            <p>Get single port data from database</p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
@@ -664,103 +1124,263 @@
                                     <th>Method</th><th>GET</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/port/&lt;port id&gt;</td>
                                 </tr>
                             </table>
 
                             
 
                             
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>port id from database</td><td>10</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>sw_id</td><td>switch id for this port</td><td>234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>mac</td><td>mac address</td><td>“01:23:45:67:89:AB”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>port_no</td><td>port number</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>status</td><td>port status</td><td>“available”</td>
+                                </tr>
+                                
+                            </table>
+                            
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -X GET http://example.com/port/10</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>{<br>  “id”: 10,<br>  “sw_id”: 234,<br>  “mac”: “01:23:45:67:89:AB”,<br>  “port_no”: 5,<br>  “status”: “available”<br>}</pre>
                         </div>
                     </div>
                     
                     <div class="panel panel-default" id="2bbbec13dcfbd272cdbd1016bfdf372d">
                         <div class="panel-heading">
                             <h3>Add port data</h3>
-                            <p></p>
+                            <p>Add a port data to switch</p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Method</th><th>GET</th>
+                                    <th>Method</th><th>POST</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/port</td>
                                 </tr>
                             </table>
 
                             
+                            <h4>Request message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>sw_id</td><td>switch id for this port</td><td>234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>mac</td><td>mac address</td><td>“01:23:45:67:89:AB”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>port_no</td><td>port number</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>status</td><td>port status</td><td>“available”</td>
+                                </tr>
+                                
+                            </table>
+                            
 
+                            
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>port id from database</td><td>10</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>sw_id</td><td>switch id for this port</td><td>234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>mac</td><td>mac address</td><td>“01:23:45:67:89:AB”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>port_no</td><td>port number</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>status</td><td>port status</td><td>“available”</td>
+                                </tr>
+                                
+                            </table>
                             
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -X POST -d ‘{ \<br>  “id”: 10, \<br>  “sw_id”: 234, \<br>  “mac”: “01:23:45:67:89:AB”, \<br>  “port_no”: 5, \<br>  “status”: “available” \<br>} \<br>http://example.com/port</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>{<br>  “id”: 10,<br>  “sw_id”: 234,<br>  “mac”: “01:23:45:67:89:AB”,<br>  “port_no”: 5,<br>  “status”: “available”<br>}</pre>
                         </div>
                     </div>
                     
                     <div class="panel panel-default" id="da7acd44d7212f9fa0a84edb9fcdb9ec">
                         <div class="panel-heading">
                             <h3>Update port data</h3>
-                            <p></p>
+                            <p>Update port data with port id and port data</p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Method</th><th>GET</th>
+                                    <th>Method</th><th>POST</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/port/&lt;port id&gt;</td>
                                 </tr>
                             </table>
 
                             
+                            <h4>Request message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>sw_id</td><td>switch id for this port</td><td>234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>mac</td><td>mac address</td><td>“01:23:45:67:89:AB”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>port_no</td><td>port number</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>status</td><td>port status</td><td>“available”</td>
+                                </tr>
+                                
+                            </table>
+                            
 
+                            
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>port id from database</td><td>10</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>sw_id</td><td>switch id for this port</td><td>234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>mac</td><td>mac address</td><td>“01:23:45:67:89:AB”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>port_no</td><td>port number</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>status</td><td>port status</td><td>“available”</td>
+                                </tr>
+                                
+                            </table>
                             
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -X POST /port/10 -d ‘{ \<br>  “mac”: “01:23:45:67:89:AC”, \<br>  “port_no”: 7, \<br>  “status”: “unavailable” \<br>} \<br>http://example.com/port/10</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>{<br>  “id”: 10,<br>  “sw_id”: 234,<br>  “mac”: “01:23:45:67:89:AC”,<br>  “port_no”: 7,<br>  “status”: “unavailable”<br>}</pre>
                         </div>
                     </div>
                     
                     <div class="panel panel-default" id="eb62bb48cfd9a3f58707bb03bfe83158">
                         <div class="panel-heading">
                             <h3>Delete port data</h3>
-                            <p></p>
+                            <p>Delete port data from database by using port id</p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Method</th><th>GET</th>
+                                    <th>Method</th><th>DELETE</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/port/&lt;port id&gt;</td>
                                 </tr>
                             </table>
 
                             
 
                             
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>port id from database</td><td>10</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>sw_id</td><td>switch id for this port</td><td>234</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>mac</td><td>mac address</td><td>“01:23:45:67:89:AB”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>port_no</td><td>port number</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>status</td><td>port status</td><td>“available”</td>
+                                </tr>
+                                
+                            </table>
+                            
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -X DELETE http://example.com/port/10</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>{<br>  “id”: 10,<br>  “sw_id”: 234,<br>  “mac”: “01:23:45:67:89:AC”,<br>  “port_no”: 7,<br>  “status”: “unavailable”<br>}</pre>
                         </div>
                     </div>
                     
@@ -771,7 +1391,7 @@
                     <div class="panel panel-default" id="37101e89b0834a49b14a4c5fdd9475c2">
                         <div class="panel-heading">
                             <h3>Get all host data from controller</h3>
-                            <p></p>
+                            <p>Get all host data from database by using controller id</p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
@@ -780,26 +1400,50 @@
                                     <th>Method</th><th>GET</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/controller/&lt;controller id&gt;/hosts</td>
                                 </tr>
                             </table>
 
                             
 
                             
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>Host id from database</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>mac</td><td>Mac address of host</td><td>“12:34:56:78:90:AB”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>port_id</td><td>Switch port id</td><td>4</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>desc</td><td>Description of host</td><td>“Web server in room 345”</td>
+                                </tr>
+                                
+                            </table>
+                            
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -x GET http://example.com/controller/234/hosts</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>[<br>  {<br>    “id”: 5,<br>    “mac”: “12:34:56:78:90:AB”,<br>    “port_id”: 7,<br>    “desc”: “Web server in room 345”<br>  },<br>  {<br>    “id”: 6,<br>    “mac”: “12:34:56:78:90:AC”,<br>    “port_id”: 8,<br>    “desc”: “DB server in room 345”<br>  }<br>]</pre>
                         </div>
                     </div>
                     
                     <div class="panel panel-default" id="fdd495eb17842ff4a74c89ff63a5e008">
                         <div class="panel-heading">
                             <h3>Get host data</h3>
-                            <p></p>
+                            <p>Get single host data from database by using host id</p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
@@ -808,103 +1452,239 @@
                                     <th>Method</th><th>GET</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/host/&lt;host id&gt;</td>
                                 </tr>
                             </table>
 
                             
 
                             
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>Host id from database</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>mac</td><td>Mac address of host</td><td>“12:34:56:78:90:AB”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>port_id</td><td>Switch port id</td><td>4</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>desc</td><td>Description of host</td><td>“Web server in room 345”</td>
+                                </tr>
+                                
+                            </table>
+                            
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -X GET http://example.com/host/5</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>{<br>  “id”: 5,<br>  “mac”: “12:34:56:78:90:AB”,<br>  “port_id”: 7,<br>  “desc”: “Web server in room 345”<br>}</pre>
                         </div>
                     </div>
                     
                     <div class="panel panel-default" id="bbc49b8935e3a8ecaac75427840e34a3">
                         <div class="panel-heading">
                             <h3>Add host data</h3>
-                            <p></p>
+                            <p>Add host data to database</p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Method</th><th>GET</th>
+                                    <th>Method</th><th>POST</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/host</td>
                                 </tr>
                             </table>
 
                             
+                            <h4>Request message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>mac</td><td>Mac address of host</td><td>“12:34:56:78:90:AB”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>port_id</td><td>Switch port id</td><td>4</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>desc</td><td>Description of host</td><td>“Web server in room 345”</td>
+                                </tr>
+                                
+                            </table>
+                            
 
+                            
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>Host id from database</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>mac</td><td>Mac address of host</td><td>“12:34:56:78:90:AB”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>port_id</td><td>Switch port id</td><td>4</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>desc</td><td>Description of host</td><td>“Web server in room 345”</td>
+                                </tr>
+                                
+                            </table>
                             
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -X POST -d ‘{ \<br>  “mac”: “12:34:56:78:90:AB”, \<br>  “port_id”: 7, \<br>  “desc”: “Web server in room 345” \<br>} \<br>http://example.com/host</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>{<br>  “id”: 5,<br>  “mac”: “12:34:56:78:90:AB”,<br>  “port_id”: 7,<br>  “desc”: “Web server in room 345”<br>}</pre>
                         </div>
                     </div>
                     
                     <div class="panel panel-default" id="de458ad6ecb99cfc8e4cc7fa762462c4">
                         <div class="panel-heading">
                             <h3>Update host data</h3>
-                            <p></p>
+                            <p>Update host data to database</p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Method</th><th>GET</th>
+                                    <th>Method</th><th>POST</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/host/&lt;host id&gt;</td>
                                 </tr>
                             </table>
 
                             
+                            <h4>Request message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>mac</td><td>Mac address of host</td><td>“12:34:56:78:90:AB”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>port_id</td><td>Switch port id</td><td>4</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>desc</td><td>Description of host</td><td>“Web server in room 345”</td>
+                                </tr>
+                                
+                            </table>
+                            
 
+                            
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>Host id from database</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>mac</td><td>Mac address of host</td><td>“12:34:56:78:90:AB”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>port_id</td><td>Switch port id</td><td>4</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>desc</td><td>Description of host</td><td>“Web server in room 345”</td>
+                                </tr>
+                                
+                            </table>
                             
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -X POST -d ‘{ \<br>  “mac”: “12:34:56:78:90:AB”, \<br>  “port_id”: 7, \<br>  “desc”: “Web server in room 345” \<br>} \<br>http://example.com/host/5</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>{<br>  “id”: 5,<br>  “mac”: “12:34:56:78:90:AB”,<br>  “port_id”: 7,<br>  “desc”: “Web server in room 345”<br>}</pre>
                         </div>
                     </div>
                     
                     <div class="panel panel-default" id="5c9c7018bff58d171c942206a2ed9692">
                         <div class="panel-heading">
                             <h3>Remove host data</h3>
-                            <p></p>
+                            <p>Delete host data from database</p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Method</th><th>GET</th>
+                                    <th>Method</th><th>DELETE</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/host/&lt;host id&gt;</td>
                                 </tr>
                             </table>
 
                             
 
                             
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>Host id from database</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>mac</td><td>Mac address of host</td><td>“12:34:56:78:90:AB”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>port_id</td><td>Switch port id</td><td>4</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>desc</td><td>Description of host</td><td>“Web server in room 345”</td>
+                                </tr>
+                                
+                            </table>
+                            
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -X DELETE http://example.com/host/5</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>{<br>  “id”: 5,<br>  “mac”: “12:34:56:78:90:AB”,<br>  “port_id”: 7,<br>  “desc”: “Web server in room 345”<br>}</pre>
                         </div>
                     </div>
                     
@@ -915,7 +1695,7 @@
                     <div class="panel panel-default" id="ab8b048f8bc9b8d925058e7fdc1d4234">
                         <div class="panel-heading">
                             <h3>Get all flow entry data</h3>
-                            <p></p>
+                            <p>Get all flow entry data from database by using switch id.</p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
@@ -924,26 +1704,138 @@
                                     <th>Method</th><th>GET</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/switch/&lt;switch id&gt;/flow-entries</td>
                                 </tr>
                             </table>
 
                             
 
                             
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>flow entry id from database</td><td>12</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>buffer_id</td><td>buffer id for the entry</td><td>45</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>cookie</td><td>cookie for the entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>cookie_mask</td><td>cookie mask for the entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>sw_id</td><td>switch id for for this entry</td><td>45</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>flags</td><td>entry flags</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>hard_timeout</td><td>hard timeout for this entry</td><td>100</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>idle_timeout</td><td>idle time out for this entry</td><td>600</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>priority</td><td>priority for this entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>table_id</td><td>table id for this entry</td><td>1</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_in_port</td><td>in port for this entry match</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_eth_dst</td><td>ethernet destination for this entry match</td><td>“192.168.0.4”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_eth_src</td><td>ethernet source for this entry match</td><td>“192.168.0.10”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_vlan_vid</td><td>vlan id for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv4_src</td><td>IPv4 source for this entry match</td><td>“10.0.5.12”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv4_dst</td><td>IPv4 destination for this entry match</td><td>“10.0.5.59”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv6_src</td><td>IPv6 source for this entry match</td><td>“2001:0DB8:02de:0000:0000:0000:0000:0e13”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv6_dst</td><td>IPv6 destination for this entry match</td><td>“2001:0DB8:02de:0000:1250:0fc2:1090:0f78”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_mpls_label</td><td>mlps for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_tunnel_id</td><td>tunnel id for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_output_port</td><td>output port for this entry action</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_group_id</td><td>group id for this entry action</td><td>8</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_queue_id</td><td>queue id for this entry action</td><td>7</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>raw</td><td>raw text data for this flow entry (json)</td><td>“{<br>  “buffer_id”:0,<br>  “cookie”: 0,<br>  ……<br>}”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>timestamp</td><td>when the entry created<br>*Unix timestmp</td><td>1417768230</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>available</td><td>is the flow entry available?(boolean)</td><td>True</td>
+                                </tr>
+                                
+                            </table>
+                            
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -X GET http://example.com/switch/234/flow-entries</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>[<br>  {<br>    "id": 12,<br>    "buffer_id": 45,<br>    "cookie": 0,<br>    "cookie_mask": 0,<br>    "sw_id": 234,<br>    "flags": 0,<br>    "hard_timeout": 100,<br>    "idle_timeout": 600,<br>    "priority": 0,<br>    "table_id": 1,<br>    "match_in_port": 5,<br>    "match_eth_dst": "192.168.0.4",<br>    "match_eth_src": "192.168.0.10",<br>    "match_vlan_vid": 0,<br>    "match_ipv4_src": "10.0.5.12",<br>    "match_ipv4_dst": "10.0.5.59",<br>    "match_ipv6_src": "2001:0DB8:02de:0000:0000:0000:0000:0e13",<br>    "match_ipv6_dst": "2001:0DB8:02de:0000:1250:0fc2:1090:0f78",<br>    "match_mpls_label": 0,<br>    "match_tunnel_id": 0,<br>    "action_output_port": 5,<br>    "action_group_id": 8,<br>    "action_queue_id": 7,<br>    "raw": “{…}”,<br>    "timestamp": 1417768230,<br>    "available": True,<br>  },<br>  ……<br>]</pre>
                         </div>
                     </div>
                     
                     <div class="panel panel-default" id="e4e646ef289daa2d2a455633a29a03b9">
                         <div class="panel-heading">
                             <h3>Get single flow entry data</h3>
-                            <p></p>
+                            <p>Get single flow entry data from database by using flow entry id</p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
@@ -952,103 +1844,767 @@
                                     <th>Method</th><th>GET</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/flow-entry/&lt;flow entry id&gt;</td>
                                 </tr>
                             </table>
 
                             
 
                             
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>flow entry id from database</td><td>12</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>buffer_id</td><td>buffer id for the entry</td><td>45</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>cookie</td><td>cookie for the entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>cookie_mask</td><td>cookie mask for the entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>sw_id</td><td>switch id for for this entry</td><td>45</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>flags</td><td>entry flags</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>hard_timeout</td><td>hard timeout for this entry</td><td>100</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>idle_timeout</td><td>idle time out for this entry</td><td>600</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>priority</td><td>priority for this entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>table_id</td><td>table id for this entry</td><td>1</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_in_port</td><td>in port for this entry match</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_eth_dst</td><td>ethernet destination for this entry match</td><td>“192.168.0.4”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_eth_src</td><td>ethernet source for this entry match</td><td>“192.168.0.10”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_vlan_vid</td><td>vlan id for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv4_src</td><td>IPv4 source for this entry match</td><td>“10.0.5.12”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv4_dst</td><td>IPv4 destination for this entry match</td><td>“10.0.5.59”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv6_src</td><td>IPv6 source for this entry match</td><td>“2001:0DB8:02de:0000:0000:0000:0000:0e13”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv6_dst</td><td>IPv6 destination for this entry match</td><td>“2001:0DB8:02de:0000:1250:0fc2:1090:0f78”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_mpls_label</td><td>mlps for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_tunnel_id</td><td>tunnel id for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_output_port</td><td>output port for this entry action</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_group_id</td><td>group id for this entry action</td><td>8</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_queue_id</td><td>queue id for this entry action</td><td>7</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>raw</td><td>raw text data for this flow entry (json)</td><td>“{<br>  “buffer_id”:0,<br>  “cookie”: 0,<br>  ……<br>}”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>timestamp</td><td>when the entry created<br>*Unix timestmp</td><td>1417768230</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>available</td><td>is the flow entry available?(boolean)</td><td>True</td>
+                                </tr>
+                                
+                            </table>
+                            
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -X GET http://example.com/flow-entry/12</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>{<br>    "id": 12,<br>    "buffer_id": 45,<br>    "cookie": 0,<br>    "cookie_mask": 0,<br>    "sw_id": 234,<br>    "flags": 0,<br>    "hard_timeout": 100,<br>    "idle_timeout": 600,<br>    "priority": 0,<br>    "table_id": 1,<br>    "match_in_port": 5,<br>    "match_eth_dst": "192.168.0.4",<br>    "match_eth_src": "192.168.0.10",<br>    "match_vlan_vid": 0,<br>    "match_ipv4_src": "10.0.5.12",<br>    "match_ipv4_dst": "10.0.5.59",<br>    "match_ipv6_src": "2001:0DB8:02de:0000:0000:0000:0000:0e13",<br>    "match_ipv6_dst": "2001:0DB8:02de:0000:1250:0fc2:1090:0f78",<br>    "match_mpls_label": 0,<br>    "match_tunnel_id": 0,<br>    "action_output_port": 5,<br>    "action_group_id": 8,<br>    "action_queue_id": 7,<br>    "raw": “{…}",<br>    "timestamp": 1417768230,<br>    "available": True<br>}</pre>
                         </div>
                     </div>
                     
                     <div class="panel panel-default" id="c00710169ee85fa53698061b14c80bd2">
                         <div class="panel-heading">
                             <h3>Add flow entry data</h3>
-                            <p></p>
+                            <p>Add flow entry data to database</p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Method</th><th>GET</th>
+                                    <th>Method</th><th>POST</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/flow-entry</td>
                                 </tr>
                             </table>
 
                             
+                            <h4>Request message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>buffer_id</td><td>buffer id for the entry</td><td>45</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>cookie</td><td>cookie for the entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>cookie_mask</td><td>cookie mask for the entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>sw_id</td><td>switch id for for this entry</td><td>45</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>flags</td><td>entry flags</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>hard_timeout</td><td>hard timeout for this entry</td><td>100</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>idle_timeout</td><td>idle time out for this entry</td><td>600</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>priority</td><td>priority for this entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>table_id</td><td>table id for this entry</td><td>1</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_in_port</td><td>in port for this entry match</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_eth_dst</td><td>ethernet destination for this entry match</td><td>“192.168.0.4”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_eth_src</td><td>ethernet source for this entry match</td><td>“192.168.0.10”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_vlan_vid</td><td>vlan id for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv4_src</td><td>IPv4 source for this entry match</td><td>“10.0.5.12”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv4_dst</td><td>IPv4 destination for this entry match</td><td>“10.0.5.59”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv6_src</td><td>IPv6 source for this entry match</td><td>“2001:0DB8:02de:0000:0000:0000:0000:0e13”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv6_dst</td><td>IPv6 destination for this entry match</td><td>“2001:0DB8:02de:0000:1250:0fc2:1090:0f78”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_mpls_label</td><td>mlps for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_tunnel_id</td><td>tunnel id for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_output_port</td><td>output port for this entry action</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_group_id</td><td>group id for this entry action</td><td>8</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_queue_id</td><td>queue id for this entry action</td><td>7</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>raw</td><td>raw text data for this flow entry (json)</td><td>“{<br>  “buffer_id”:0,<br>  “cookie”: 0,<br>  ……<br>}”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>timestamp</td><td>when the entry created<br>*Unix timestmp</td><td>1417768230</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>available</td><td>is the flow entry available?(boolean)</td><td>True</td>
+                                </tr>
+                                
+                            </table>
+                            
 
+                            
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>flow entry id from database</td><td>12</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>buffer_id</td><td>buffer id for the entry</td><td>45</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>cookie</td><td>cookie for the entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>cookie_mask</td><td>cookie mask for the entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>sw_id</td><td>switch id for for this entry</td><td>45</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>flags</td><td>entry flags</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>hard_timeout</td><td>hard timeout for this entry</td><td>100</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>idle_timeout</td><td>idle time out for this entry</td><td>600</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>priority</td><td>priority for this entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>table_id</td><td>table id for this entry</td><td>1</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_in_port</td><td>in port for this entry match</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_eth_dst</td><td>ethernet destination for this entry match</td><td>“192.168.0.4”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_eth_src</td><td>ethernet source for this entry match</td><td>“192.168.0.10”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_vlan_vid</td><td>vlan id for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv4_src</td><td>IPv4 source for this entry match</td><td>“10.0.5.12”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv4_dst</td><td>IPv4 destination for this entry match</td><td>“10.0.5.59”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv6_src</td><td>IPv6 source for this entry match</td><td>“2001:0DB8:02de:0000:0000:0000:0000:0e13”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv6_dst</td><td>IPv6 destination for this entry match</td><td>“2001:0DB8:02de:0000:1250:0fc2:1090:0f78”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_mpls_label</td><td>mlps for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_tunnel_id</td><td>tunnel id for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_output_port</td><td>output port for this entry action</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_group_id</td><td>group id for this entry action</td><td>8</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_queue_id</td><td>queue id for this entry action</td><td>7</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>raw</td><td>raw text data for this flow entry (json)</td><td>“{<br>  “buffer_id”:0,<br>  “cookie”: 0,<br>  ……<br>}”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>timestamp</td><td>when the entry created<br>*Unix timestmp</td><td>1417768230</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>available</td><td>is the flow entry available?(boolean)</td><td>True</td>
+                                </tr>
+                                
+                            </table>
                             
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -X POST -d ‘{ \<br>  "buffer_id": 45, \<br>  "cookie": 0, \<br>  "cookie_mask": 0, \<br>  "sw_id": 234, \<br>  "flags": 0, \<br>  "hard_timeout": 100, \<br>  "idle_timeout": 600, \<br>  "priority": 0, \<br>  "table_id": 1, \<br>  "match_in_port": 5, \<br>  "match_eth_dst": "192.168.0.4", \<br>  "match_eth_src": "192.168.0.10", \<br>  "match_vlan_vid": 0, \<br>  "match_ipv4_src": "10.0.5.12", \<br>  "match_ipv4_dst": "10.0.5.59", \<br>  "match_ipv6_src": "2001:0DB8:02de:0000:0000:0000:0000:0e13", \<br>  "match_ipv6_dst": "2001:0DB8:02de:0000:1250:0fc2:1090:0f78", \<br>  "match_mpls_label": 0, \<br>  "match_tunnel_id": 0, \<br>  "action_output_port": 5, \<br>  "action_group_id": 8, \<br>  "action_queue_id": 7, \<br>}’ \<br>http://example.com/flow-entry</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>{<br>    "id": 12,<br>    "buffer_id": 45,<br>    "cookie": 0,<br>    "cookie_mask": 0,<br>    "sw_id": 234,<br>    "flags": 0,<br>    "hard_timeout": 100,<br>    "idle_timeout": 600,<br>    "priority": 0,<br>    "table_id": 1,<br>    "match_in_port": 5,<br>    "match_eth_dst": "192.168.0.4",<br>    "match_eth_src": "192.168.0.10",<br>    "match_vlan_vid": 0,<br>    "match_ipv4_src": "10.0.5.12",<br>    "match_ipv4_dst": "10.0.5.59",<br>    "match_ipv6_src": "2001:0DB8:02de:0000:0000:0000:0000:0e13",<br>    "match_ipv6_dst": "2001:0DB8:02de:0000:1250:0fc2:1090:0f78",<br>    "match_mpls_label": 0,<br>    "match_tunnel_id": 0,<br>    "action_output_port": 5,<br>    "action_group_id": 8,<br>    "action_queue_id": 7,<br>    "raw": “{…}",<br>    "timestamp": 1417768230,<br>    "available": True<br>}</pre>
                         </div>
                     </div>
                     
                     <div class="panel panel-default" id="3ae49c334db837586ef57f1e86c04c65">
                         <div class="panel-heading">
                             <h3>Update flow entry data</h3>
-                            <p></p>
+                            <p>Update flow entry data to database</p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Method</th><th>GET</th>
+                                    <th>Method</th><th>POST</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/flow-entry/&lt;flow entry id&gt;</td>
                                 </tr>
                             </table>
 
                             
+                            <h4>Request message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>buffer_id</td><td>buffer id for the entry</td><td>45</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>cookie</td><td>cookie for the entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>cookie_mask</td><td>cookie mask for the entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>sw_id</td><td>switch id for for this entry</td><td>45</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>flags</td><td>entry flags</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>hard_timeout</td><td>hard timeout for this entry</td><td>100</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>idle_timeout</td><td>idle time out for this entry</td><td>600</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>priority</td><td>priority for this entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>table_id</td><td>table id for this entry</td><td>1</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_in_port</td><td>in port for this entry match</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_eth_dst</td><td>ethernet destination for this entry match</td><td>“192.168.0.4”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_eth_src</td><td>ethernet source for this entry match</td><td>“192.168.0.10”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_vlan_vid</td><td>vlan id for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv4_src</td><td>IPv4 source for this entry match</td><td>“10.0.5.12”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv4_dst</td><td>IPv4 destination for this entry match</td><td>“10.0.5.59”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv6_src</td><td>IPv6 source for this entry match</td><td>“2001:0DB8:02de:0000:0000:0000:0000:0e13”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv6_dst</td><td>IPv6 destination for this entry match</td><td>“2001:0DB8:02de:0000:1250:0fc2:1090:0f78”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_mpls_label</td><td>mlps for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_tunnel_id</td><td>tunnel id for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_output_port</td><td>output port for this entry action</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_group_id</td><td>group id for this entry action</td><td>8</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_queue_id</td><td>queue id for this entry action</td><td>7</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>raw</td><td>raw text data for this flow entry (json)</td><td>“{<br>  “buffer_id”:0,<br>  “cookie”: 0,<br>  ……<br>}”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>timestamp</td><td>when the entry created<br>*Unix timestmp</td><td>1417768230</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>available</td><td>is the flow entry available?(boolean)</td><td>True</td>
+                                </tr>
+                                
+                            </table>
+                            
 
+                            
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>flow entry id from database</td><td>12</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>buffer_id</td><td>buffer id for the entry</td><td>45</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>cookie</td><td>cookie for the entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>cookie_mask</td><td>cookie mask for the entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>sw_id</td><td>switch id for for this entry</td><td>45</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>flags</td><td>entry flags</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>hard_timeout</td><td>hard timeout for this entry</td><td>100</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>idle_timeout</td><td>idle time out for this entry</td><td>600</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>priority</td><td>priority for this entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>table_id</td><td>table id for this entry</td><td>1</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_in_port</td><td>in port for this entry match</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_eth_dst</td><td>ethernet destination for this entry match</td><td>“192.168.0.4”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_eth_src</td><td>ethernet source for this entry match</td><td>“192.168.0.10”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_vlan_vid</td><td>vlan id for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv4_src</td><td>IPv4 source for this entry match</td><td>“10.0.5.12”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv4_dst</td><td>IPv4 destination for this entry match</td><td>“10.0.5.59”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv6_src</td><td>IPv6 source for this entry match</td><td>“2001:0DB8:02de:0000:0000:0000:0000:0e13”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv6_dst</td><td>IPv6 destination for this entry match</td><td>“2001:0DB8:02de:0000:1250:0fc2:1090:0f78”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_mpls_label</td><td>mlps for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_tunnel_id</td><td>tunnel id for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_output_port</td><td>output port for this entry action</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_group_id</td><td>group id for this entry action</td><td>8</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_queue_id</td><td>queue id for this entry action</td><td>7</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>raw</td><td>raw text data for this flow entry (json)</td><td>“{<br>  “buffer_id”:0,<br>  “cookie”: 0,<br>  ……<br>}”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>timestamp</td><td>when the entry created<br>*Unix timestmp</td><td>1417768230</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>available</td><td>is the flow entry available?(boolean)</td><td>True</td>
+                                </tr>
+                                
+                            </table>
                             
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -X POST -d ‘{ \<br>  "buffer_id": 45, \<br>  "cookie": 0, \<br>  "cookie_mask": 0, \<br>  "sw_id": 234, \<br>  "flags": 0, \<br>  "hard_timeout": 100, \<br>  "idle_timeout": 600, \<br>  "priority": 0, \<br>  "table_id": 1, \<br>  "match_in_port": 5, \<br>  "match_eth_dst": "192.168.0.4", \<br>  "match_eth_src": "192.168.0.10", \<br>  "match_vlan_vid": 0, \<br>  "match_ipv4_src": "10.0.5.12", \<br>  "match_ipv4_dst": "10.0.5.59", \<br>  "match_ipv6_src": "2001:0DB8:02de:0000:0000:0000:0000:0e13", \<br>  "match_ipv6_dst": "2001:0DB8:02de:0000:1250:0fc2:1090:0f78", \<br>  "match_mpls_label": 0, \<br>  "match_tunnel_id": 0, \<br>  "action_output_port": 5, \<br>  "action_group_id": 8, \<br>  "action_queue_id": 7, \<br>}’ \<br>http://example.com/flow-entry/12</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>{<br>    "id": 12,<br>    "buffer_id": 45,<br>    "cookie": 0,<br>    "cookie_mask": 0,<br>    "sw_id": 234,<br>    "flags": 0,<br>    "hard_timeout": 100,<br>    "idle_timeout": 600,<br>    "priority": 0,<br>    "table_id": 1,<br>    "match_in_port": 5,<br>    "match_eth_dst": "192.168.0.4",<br>    "match_eth_src": "192.168.0.10",<br>    "match_vlan_vid": 0,<br>    "match_ipv4_src": "10.0.5.12",<br>    "match_ipv4_dst": "10.0.5.59",<br>    "match_ipv6_src": "2001:0DB8:02de:0000:0000:0000:0000:0e13",<br>    "match_ipv6_dst": "2001:0DB8:02de:0000:1250:0fc2:1090:0f78",<br>    "match_mpls_label": 0,<br>    "match_tunnel_id": 0,<br>    "action_output_port": 5,<br>    "action_group_id": 8,<br>    "action_queue_id": 7,<br>    "raw": “{…}",<br>    "timestamp": 1417768230,<br>    "available": True<br>}</pre>
                         </div>
                     </div>
                     
                     <div class="panel panel-default" id="fed5b69f18a7726506551a7f059ffc03">
                         <div class="panel-heading">
                             <h3>Delete flow entry data</h3>
-                            <p></p>
+                            <p>Remove flow entry data from database</p>
                         </div>
                         <div class="panel-body">
                             <h4>Usage</h4>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Method</th><th>GET</th>
+                                    <th>Method</th><th>DELETE</th>
                                 </tr>
                                 <tr>
-                                    <td>URL</td><td>/</td>
+                                    <td>URL</td><td>/flow-entry/<flow entry id></td>
                                 </tr>
                             </table>
 
                             
 
                             
+                            <h4>Response message body:</h4>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Attribute</th><th>Description</th><th>Example</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td>id</td><td>flow entry id from database</td><td>12</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>buffer_id</td><td>buffer id for the entry</td><td>45</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>cookie</td><td>cookie for the entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>cookie_mask</td><td>cookie mask for the entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>sw_id</td><td>switch id for for this entry</td><td>45</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>flags</td><td>entry flags</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>hard_timeout</td><td>hard timeout for this entry</td><td>100</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>idle_timeout</td><td>idle time out for this entry</td><td>600</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>priority</td><td>priority for this entry</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>table_id</td><td>table id for this entry</td><td>1</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_in_port</td><td>in port for this entry match</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_eth_dst</td><td>ethernet destination for this entry match</td><td>“192.168.0.4”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_eth_src</td><td>ethernet source for this entry match</td><td>“192.168.0.10”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_vlan_vid</td><td>vlan id for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv4_src</td><td>IPv4 source for this entry match</td><td>“10.0.5.12”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv4_dst</td><td>IPv4 destination for this entry match</td><td>“10.0.5.59”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv6_src</td><td>IPv6 source for this entry match</td><td>“2001:0DB8:02de:0000:0000:0000:0000:0e13”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_ipv6_dst</td><td>IPv6 destination for this entry match</td><td>“2001:0DB8:02de:0000:1250:0fc2:1090:0f78”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_mpls_label</td><td>mlps for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>match_tunnel_id</td><td>tunnel id for this entry match</td><td>0</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_output_port</td><td>output port for this entry action</td><td>5</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_group_id</td><td>group id for this entry action</td><td>8</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>action_queue_id</td><td>queue id for this entry action</td><td>7</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>raw</td><td>raw text data for this flow entry (json)</td><td>“{<br>  “buffer_id”:0,<br>  “cookie”: 0,<br>  ……<br>}”</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>timestamp</td><td>when the entry created<br>*Unix timestmp</td><td>1417768230</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>available</td><td>is the flow entry available?(boolean)</td><td>True</td>
+                                </tr>
+                                
+                            </table>
+                            
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X  http://example.com/</pre>
+                            <pre>$ curl -x DELETE http://example.com/flow-entry/12</pre>
 
                             <h4>Example result:</h4>
-                            <pre></pre>
+                            <pre>{<br>    "id": 12,<br>    "buffer_id": 45,<br>    "cookie": 0,<br>    "cookie_mask": 0,<br>    "sw_id": 234,<br>    "flags": 0,<br>    "hard_timeout": 100,<br>    "idle_timeout": 600,<br>    "priority": 0,<br>    "table_id": 1,<br>    "match_in_port": 5,<br>    "match_eth_dst": "192.168.0.4",<br>    "match_eth_src": "192.168.0.10",<br>    "match_vlan_vid": 0,<br>    "match_ipv4_src": "10.0.5.12",<br>    "match_ipv4_dst": "10.0.5.59",<br>    "match_ipv6_src": "2001:0DB8:02de:0000:0000:0000:0000:0e13",<br>    "match_ipv6_dst": "2001:0DB8:02de:0000:1250:0fc2:1090:0f78",<br>    "match_mpls_label": 0,<br>    "match_tunnel_id": 0,<br>    "action_output_port": 5,<br>    "action_group_id": 8,<br>    "action_queue_id": 7,<br>    "raw": “{…}",<br>    "timestamp": 1417768230,<br>    "available": True<br>}</pre>
                         </div>
                     </div>
                     
