@@ -234,13 +234,13 @@
                     "ex": "Switch in room 234"
                 },
                 {
-                    "attr": "getway",
-                    "desc": "Is switch getway(Boolean)",
+                    "attr": "gateway",
+                    "desc": "Is switch gateway(Boolean)",
                     "ex": "True"
                 }
             ],
             "exp_u": "$ curl –X GET http://example.com/controller/123/switches",
-            "exp_res": "[<br>  {<br>    ‘id’: 234,<br>    ‘lc_id’: 123,<br>    ‘dpid’: ‘00000001’,<br>    ‘ip’: “10.0.4.10”,<br>    ‘desc’: “Switch in room 234”,<br>    ‘getway’: True<br>  },<br>  {<br>    ‘id’: 235,<br>    ‘lc_id’: 123,<br>    ‘dpid’: ‘00000002’,<br>    ‘ip’: “10.0.4.11”,<br>    ‘desc’: “Switch in room 235”,<br>    ‘getway’: False<br>  }<br>]"
+            "exp_res": "[<br>  {<br>    ‘id’: 234,<br>    ‘lc_id’: 123,<br>    ‘dpid’: ‘00000001’,<br>    ‘ip’: “10.0.4.10”,<br>    ‘desc’: “Switch in room 234”,<br>    ‘gateway’: True<br>  },<br>  {<br>    ‘id’: 235,<br>    ‘lc_id’: 123,<br>    ‘dpid’: ‘00000002’,<br>    ‘ip’: “10.0.4.11”,<br>    ‘desc’: “Switch in room 235”,<br>    ‘gateway’: False<br>  }<br>]"
         },
         {
             "name": "Get single switch data",
@@ -277,13 +277,13 @@
                     "ex": "Switch in room 234"
                 },
                 {
-                    "attr": "getway",
-                    "desc": "Is switch getway(Boolean)",
+                    "attr": "gateway",
+                    "desc": "Is switch gateway(Boolean)",
                     "ex": "True"
                 }
             ],
             "exp_u": "$ curl -X GET http://example.com/switch/234",
-            "exp_res": "{<br>  ‘id’: 234,<br>  ‘lc_id’: 123,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘getway’: true<br>}"
+            "exp_res": "{<br>  ‘id’: 234,<br>  ‘lc_id’: 123,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘gateway’: true<br>}"
         },
         {
             "name": "Add a switch data to database",
@@ -314,8 +314,8 @@
                     "ex": "Switch in room 234"
                 },
                 {
-                    "attr": "getway",
-                    "desc": "Is switch getway(Boolean)",
+                    "attr": "gateway",
+                    "desc": "Is switch gateway(Boolean)",
                     "ex": "True"
                 }
             ],
@@ -346,13 +346,13 @@
                     "ex": "Switch in room 234"
                 },
                 {
-                    "attr": "getway",
-                    "desc": "Is switch getway(Boolean)",
+                    "attr": "gateway",
+                    "desc": "Is switch gateway(Boolean)",
                     "ex": "True"
                 }
             ],
-            "exp_u": "$ curl -X POST -d ‘{ \\<br>    “lc_id”: 234, \\<br>    “dpid”: “00000001”, \\<br>    “ip”: “10.0.4.10”, \\<br>    “desc”: “Switch in room 234”, \\<br>    “getway”: true \\<br>}’ \\<br>http://example.com/switch ",
-            "exp_res": "{<br>  ‘id’: 234,<br>  ‘lc_id’: 123,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘getway’: true<br>}"
+            "exp_u": "$ curl -X POST -d ‘{ \\<br>    “lc_id”: 234, \\<br>    “dpid”: “00000001”, \\<br>    “ip”: “10.0.4.10”, \\<br>    “desc”: “Switch in room 234”, \\<br>    “gateway”: true \\<br>}’ \\<br>http://example.com/switch ",
+            "exp_res": "{<br>  ‘id’: 234,<br>  ‘lc_id’: 123,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘gateway’: true<br>}"
         },
         {
             "name": "Update switch data",
@@ -383,8 +383,8 @@
                     "ex": "Switch in room 234"
                 },
                 {
-                    "attr": "getway",
-                    "desc": "Is switch getway(Boolean)",
+                    "attr": "gateway",
+                    "desc": "Is switch gateway(Boolean)",
                     "ex": "True"
                 }
             ],
@@ -415,13 +415,13 @@
                     "ex": "Switch in room 234"
                 },
                 {
-                    "attr": "getway",
-                    "desc": "Is switch getway(Boolean)",
+                    "attr": "gateway",
+                    "desc": "Is switch gateway(Boolean)",
                     "ex": "True"
                 }
             ],
-            "exp_u": "$ curl -X POST –d ‘{ \\<br>    “dpid”: “00000003”, \\<br>    “getway”: false \\<br>}’ \\<br>http://example.com/switch/123 ",
-            "exp_res": "{<br>  ‘id’: 123,<br>  ‘lc_id’: 234,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘getway’: true<br>}"
+            "exp_u": "$ curl -X POST –d ‘{ \\<br>    “dpid”: “00000003”, \\<br>    “gateway”: false \\<br>}’ \\<br>http://example.com/switch/123 ",
+            "exp_res": "{<br>  ‘id’: 123,<br>  ‘lc_id’: 234,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘gateway’: true<br>}"
         },
         {
             "name": "Delete a switch data from database",
@@ -458,13 +458,13 @@
                     "ex": "Switch in room 234"
                 },
                 {
-                    "attr": "getway",
-                    "desc": "Is switch getway(Boolean)",
+                    "attr": "gateway",
+                    "desc": "Is switch gateway(Boolean)",
                     "ex": "True"
                 }
             ],
             "exp_u": "$ curl -X DELETE http://example.com/switch/123",
-            "exp_res": "{<br>  ‘id’: 123,<br>  ‘lc_id’: 234,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘getway’: true<br>}"
+            "exp_res": "{<br>  ‘id’: 123,<br>  ‘lc_id’: 234,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘gateway’: true<br>}"
         }
     ],
     "Link Data API":[

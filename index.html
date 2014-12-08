@@ -382,7 +382,7 @@
                                 </tr>
                                 
                                 <tr>
-                                    <td>getway</td><td>Is switch getway(Boolean)</td><td>True</td>
+                                    <td>gateway</td><td>Is switch gateway(Boolean)</td><td>True</td>
                                 </tr>
                                 
                             </table>
@@ -392,7 +392,7 @@
                             <pre>$ curl –X GET http://example.com/controller/123/switches</pre>
 
                             <h4>Example result:</h4>
-                            <pre>[<br>  {<br>    ‘id’: 234,<br>    ‘lc_id’: 123,<br>    ‘dpid’: ‘00000001’,<br>    ‘ip’: “10.0.4.10”,<br>    ‘desc’: “Switch in room 234”,<br>    ‘getway’: True<br>  },<br>  {<br>    ‘id’: 235,<br>    ‘lc_id’: 123,<br>    ‘dpid’: ‘00000002’,<br>    ‘ip’: “10.0.4.11”,<br>    ‘desc’: “Switch in room 235”,<br>    ‘getway’: False<br>  }<br>]</pre>
+                            <pre>[<br>  {<br>    ‘id’: 234,<br>    ‘lc_id’: 123,<br>    ‘dpid’: ‘00000001’,<br>    ‘ip’: “10.0.4.10”,<br>    ‘desc’: “Switch in room 234”,<br>    ‘gateway’: True<br>  },<br>  {<br>    ‘id’: 235,<br>    ‘lc_id’: 123,<br>    ‘dpid’: ‘00000002’,<br>    ‘ip’: “10.0.4.11”,<br>    ‘desc’: “Switch in room 235”,<br>    ‘gateway’: False<br>  }<br>]</pre>
                         </div>
                     </div>
                     
@@ -442,7 +442,7 @@
                                 </tr>
                                 
                                 <tr>
-                                    <td>getway</td><td>Is switch getway(Boolean)</td><td>True</td>
+                                    <td>gateway</td><td>Is switch gateway(Boolean)</td><td>True</td>
                                 </tr>
                                 
                             </table>
@@ -452,7 +452,7 @@
                             <pre>$ curl -X GET http://example.com/switch/234</pre>
 
                             <h4>Example result:</h4>
-                            <pre>{<br>  ‘id’: 234,<br>  ‘lc_id’: 123,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘getway’: true<br>}</pre>
+                            <pre>{<br>  ‘id’: 234,<br>  ‘lc_id’: 123,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘gateway’: true<br>}</pre>
                         </div>
                     </div>
                     
@@ -496,7 +496,7 @@
                                 </tr>
                                 
                                 <tr>
-                                    <td>getway</td><td>Is switch getway(Boolean)</td><td>True</td>
+                                    <td>gateway</td><td>Is switch gateway(Boolean)</td><td>True</td>
                                 </tr>
                                 
                             </table>
@@ -530,17 +530,17 @@
                                 </tr>
                                 
                                 <tr>
-                                    <td>getway</td><td>Is switch getway(Boolean)</td><td>True</td>
+                                    <td>gateway</td><td>Is switch gateway(Boolean)</td><td>True</td>
                                 </tr>
                                 
                             </table>
                             
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X POST -d ‘{ \<br>    “lc_id”: 234, \<br>    “dpid”: “00000001”, \<br>    “ip”: “10.0.4.10”, \<br>    “desc”: “Switch in room 234”, \<br>    “getway”: true \<br>}’ \<br>http://example.com/switch </pre>
+                            <pre>$ curl -X POST -d ‘{ \<br>    “lc_id”: 234, \<br>    “dpid”: “00000001”, \<br>    “ip”: “10.0.4.10”, \<br>    “desc”: “Switch in room 234”, \<br>    “gateway”: true \<br>}’ \<br>http://example.com/switch </pre>
 
                             <h4>Example result:</h4>
-                            <pre>{<br>  ‘id’: 234,<br>  ‘lc_id’: 123,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘getway’: true<br>}</pre>
+                            <pre>{<br>  ‘id’: 234,<br>  ‘lc_id’: 123,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘gateway’: true<br>}</pre>
                         </div>
                     </div>
                     
@@ -584,7 +584,7 @@
                                 </tr>
                                 
                                 <tr>
-                                    <td>getway</td><td>Is switch getway(Boolean)</td><td>True</td>
+                                    <td>gateway</td><td>Is switch gateway(Boolean)</td><td>True</td>
                                 </tr>
                                 
                             </table>
@@ -618,17 +618,17 @@
                                 </tr>
                                 
                                 <tr>
-                                    <td>getway</td><td>Is switch getway(Boolean)</td><td>True</td>
+                                    <td>gateway</td><td>Is switch gateway(Boolean)</td><td>True</td>
                                 </tr>
                                 
                             </table>
                             
 
                             <h4>Example of use:</h4>
-                            <pre>$ curl -X POST –d ‘{ \<br>    “dpid”: “00000003”, \<br>    “getway”: false \<br>}’ \<br>http://example.com/switch/123 </pre>
+                            <pre>$ curl -X POST –d ‘{ \<br>    “dpid”: “00000003”, \<br>    “gateway”: false \<br>}’ \<br>http://example.com/switch/123 </pre>
 
                             <h4>Example result:</h4>
-                            <pre>{<br>  ‘id’: 123,<br>  ‘lc_id’: 234,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘getway’: true<br>}</pre>
+                            <pre>{<br>  ‘id’: 123,<br>  ‘lc_id’: 234,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘gateway’: true<br>}</pre>
                         </div>
                     </div>
                     
@@ -678,7 +678,7 @@
                                 </tr>
                                 
                                 <tr>
-                                    <td>getway</td><td>Is switch getway(Boolean)</td><td>True</td>
+                                    <td>gateway</td><td>Is switch gateway(Boolean)</td><td>True</td>
                                 </tr>
                                 
                             </table>
@@ -688,7 +688,7 @@
                             <pre>$ curl -X DELETE http://example.com/switch/123</pre>
 
                             <h4>Example result:</h4>
-                            <pre>{<br>  ‘id’: 123,<br>  ‘lc_id’: 234,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘getway’: true<br>}</pre>
+                            <pre>{<br>  ‘id’: 123,<br>  ‘lc_id’: 234,<br>  ‘dpid’: ‘00000001’,<br>  ‘ip’: “10.0.4.10”,<br>  ‘desc’: “Switch in room 234”,<br>  ‘gateway’: true<br>}</pre>
                         </div>
                     </div>
                     
