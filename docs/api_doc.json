@@ -25,13 +25,13 @@
                     "ex": "192.168.0.101"
                 },
                 {
-                    "attr": "type",
+                    "attr": "ctrn_type",
                     "desc": "Controller type",
                     "ex": "Ryu 1.3"
                 }
             ],
             "exp_u": "$ curl -X  http://example.com/controllers",
-            "exp_res": "[<br>  {<br>    'id': 1, <br>    'desc': 'Controller In Room 234',<br>    'ip_addr': '192.168.0.101',<br>    'type': 'ryu 1.3'<br>  },<br>  {<br><br>    'id': 2, <br>    'desc': 'Controller In Room 235',<br>    'ip_addr': '192.168.0.102',<br>    'type': 'Open Daylight 1.0'<br>  }<br>]"
+            "exp_res": "[<br>  {<br>    'id': 1, <br>    'desc': 'Controller In Room 234',<br>    'ip_addr': '192.168.0.101',<br>    'type': 'ryu 1.3'<br>  },<br>  {<br><br>    'id': 2, <br>    'desc': 'Controller In Room 235',<br>    'ip_addr': '192.168.0.102',<br>    'ctrn_type': 'Open Daylight 1.0'<br>  }<br>]"
         },
         {
             "name": "Get single Controller data",
@@ -58,13 +58,13 @@
                     "ex": "192.168.0.101"
                 },
                 {
-                    "attr": "type",
+                    "attr": "ctrn_type",
                     "desc": "Controller type",
                     "ex": "Ryu 1.3"
                 }
             ],
             "exp_u": "$ curl –X GET http://example.com/controller/1",
-            "exp_res": "{<br>  'id': 1, <br>  'desc': 'Controller In Room 234',<br>  'ip_addr': '192.168.0.101',<br>  'type': 'ryu 1.3'<br>}"
+            "exp_res": "{<br>  'id': 1, <br>  'desc': 'Controller In Room 234',<br>  'ip_addr': '192.168.0.101',<br>  'ctrn_type': 'ryu 1.3'<br>}"
         },
         {
             "name": "Insert controller data",
@@ -85,7 +85,7 @@
                     "ex": "192.168.0.101"
                 },
                 {
-                    "attr": "type",
+                    "attr": "ctrn_type",
                     "desc": "Controller type",
                     "ex": "Ryu 1.3"
                 }
@@ -107,13 +107,13 @@
                     "ex": "192.168.0.101"
                 },
                 {
-                    "attr": "type",
+                    "attr": "ctrn_type",
                     "desc": "Controller type",
                     "ex": "Ryu 1.3"
                 }
             ],
             "exp_u": "$ curl –X POST -d ’{ \\<br>    “desc”: “Controller A”, \\<br>    “ip_addr”: “192.168.0.101” \\<br>    “rype”: “ryu 1.3” \\<br>}’ \\<br>http://example.com/controller ",
-            "exp_res": "{<br>  'id': 1, <br>  'desc': 'Controller In Room 234',<br>  'ip_addr': '192.168.0.101',<br>  'type': 'ryu 1.3'<br>}"
+            "exp_res": "{<br>  'id': 1, <br>  'desc': 'Controller In Room 234',<br>  'ip_addr': '192.168.0.101',<br>  'ctrn_type': 'ryu 1.3'<br>}"
         },
         {
             "name": "Update controller",
@@ -134,7 +134,7 @@
                     "ex": "192.168.0.102"
                 },
                 {
-                    "attr": "type (optional)",
+                    "attr": "ctrn_type (optional)",
                     "desc": "New Controller type",
                     "ex": "Ryu 1.4"
                 }
@@ -156,13 +156,13 @@
                     "ex": "192.168.0.102"
                 },
                 {
-                    "attr": "type",
+                    "attr": "ctrn_type",
                     "desc": "New Controller type",
                     "ex": "Ryu 1.4"
                 }
             ],
-            "exp_u": "$ curl –X POST -d ’{ \\<br>    “desc”: “Controller B”, \\<br>    “ip_addr”: “192.168.0.102” \\<br>    “rype”: “ryu 1.4” \\<br>}’ \\<br>http://example.com/controller/1 ",
-            "exp_res": "{<br>  'id': 1, <br>  'desc': 'Controller B',<br>  'ip_addr': '192.168.0.102',<br>  'type': 'ryu 1.4'<br>}"
+            "exp_u": "$ curl –X POST -d ’{ \\<br>    “desc”: “Controller B”, \\<br>    “ip_addr”: “192.168.0.102” \\<br>    “ctrn_type”: “ryu 1.4” \\<br>}’ \\<br>http://example.com/controller/1 ",
+            "exp_res": "{<br>  'id': 1, <br>  'desc': 'Controller B',<br>  'ip_addr': '192.168.0.102',<br>  'ctrn_type': 'ryu 1.4'<br>}"
         },
         {
             "name": "Delete Controller Data",
@@ -180,22 +180,22 @@
                 },
                 {
                     "attr": "desc",
-                    "desc": "New escription of controller",
+                    "desc": "escription of controller",
                     "ex": "Controller B"
                 },
                 {
                     "attr": "ip_addr",
-                    "desc": "New IP address of controller",
+                    "desc": "IP address of controller",
                     "ex": "192.168.0.102"
                 },
                 {
-                    "attr": "type",
-                    "desc": "New Controller type",
+                    "attr": "ctrn_type",
+                    "desc": "Controller type",
                     "ex": "Ryu 1.4"
                 }
             ],
             "exp_u": "$ curl -X DELETE http://example.com/controller/1",
-            "exp_res": "{<br>  'id': 1, <br>  'desc': 'Controller B',<br>  'ip_addr': '192.168.0.102',<br>  'type': 'ryu 1.4'<br>}"
+            "exp_res": "{<br>  'id': 1, <br>  'desc': 'Controller B',<br>  'ip_addr': '192.168.0.102',<br>  'ctrn_type': 'ryu 1.4'<br>}"
         }
     ],
     "Switch Data API":[
